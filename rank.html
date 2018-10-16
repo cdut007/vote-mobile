@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+<link rel="stylesheet" type="text/css" href="css/phone.css">
+<link rel="stylesheet" type="text/css" href="css/style.css">
+<script src="//lib.baomitu.com/jquery/3.2.1/jquery.js"></script>
+<script src="https://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+<script>   
+        (function (doc, win) {
+            var docEl = doc.documentElement,
+                resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+                recalc = function () {
+                    var clientWidth = docEl.clientWidth;
+                    if (!clientWidth) return;
+                    if(clientWidth>=640){
+                        docEl.style.fontSize = '100px';
+                    }else{
+                        docEl.style.fontSize = 100 * (clientWidth / 640) + 'px';
+                    }
+                };
+
+                if (!doc.addEventListener) return;
+                win.addEventListener(resizeEvt, recalc, false);
+                doc.addEventListener('DOMContentLoaded', recalc, false);
+        })(document, window);
+    </script>
+<title></title>
+<style type="text/css">
+        .weikaishi{
+            width: 94%;
+            margin:0 auto;
+            padding-top: 5%;
+
+        }
+        .weikaishi_content{
+            width: 100%;
+            border-radius: 2px;
+            background: #fff;
+            padding-top: 25%;
+            padding-bottom: 40%;
+        
+        }
+        .weikaishi_img{
+            width: 50%;
+            margin:0 auto;
+        }
+        .weikaishi_img img{
+            width: 100%;
+        }
+        .weikaishi_txt{
+            font-size: 16px;
+            text-align: center;
+            margin-top: 5%;
+            color: #758697;
+        }
+        .rank_player_name{
+            overflow: hidden;
+            text-overflow:ellipsis;
+            white-space: nowrap;
+        }
+		.lfy_4mingci_box{
+			padding-bottom:15%;
+		}
+			::-webkit-scrollbar {
+		 width: 0.1px;
+	}
+    </style>
+</head>
+<body class="p_list">
+<div class="lfy_4head clearfix">
+<p class="lfy_4head_txt font18">2018-12-12 12:12:12结束</p>
+<div class="lfy_4jishi_box count_down">
+剩余
+<span style="font-size: 20px;" class="day_num"></span><span style="font-size: 20px;">20天</span>
+<span style="font-size: 20px;" class="hour_num"></span><span style="font-size: 20px;">20时</span>
+<span style="font-size: 20px;" class="min_num"></span><span style="font-size: 20px;">20分</span>
+<span style="font-size: 20px;" class="sec_num"></span><span style="font-size: 20px;">20秒</span>
+</div>
+</div>
+<div class="lfy_4paihang_box">
+<div>
+<div class="lfy_4panhang_btn">
+<div class="list_bgImg"></div>
+<div class="list_bgImg_down"></div>
+<div class="piao1">
+票数排行榜
+</div>
+</div>
+<div class="lfy_4mingci_box clearfix">
+<ul class="rank_box clearfix">
+<li class="rank_two">
+<p class="rank_title">NO.2</p>
+<div class="rank_img">
+<img src="img/erha.jpg">
+</div>
+<div class="rank_player_name">小明</div>
+<div class="rank_player_paio"><span style="font-weight: bold;">1000</span>票</div>
+</li>
+<li class="rank_one">
+<img class="huangguan" src="img/huangguan.png">
+<div class="rank_img2">
+<img src="img/erha.jpg">
+</div>
+<div class="rank_player_name" style="margin-top: 9px;font-size:16px;font-weight: bold;">小明</div>
+<div class="rank_player_paio"><span style="font-weight: bold;font-size:16px;">1000</span>票</div>
+</li>
+<li class="rank_two">
+<p class="rank_title">NO.3</p>
+<div class="rank_img">
+<img src="img/erha.jpg">
+</div>
+<div class="rank_player_name">小明</div>
+<div class="rank_player_paio"><span style="font-weight: bold;">1000</span>票</div>
+</li>
+</ul>
+<div class="lfy_4xuanshou_box">
+<div class="lfy_4xuanshou_box_content clearfix">
+<div class="lfy_ph_number">
+4
+</div>
+<div class="lfy_4touxiang_img">
+<img src="img/erha.jpg" class="lfy_4imghigh1">
+</div>
+<p class="lfy_4name1 font14">小明</p>
+<p class="lfy_4piao1 font12">1000票</p>
+</div>
+</div>
+<div class="lfy_4xuanshou_box">
+<div class="lfy_4xuanshou_box_content clearfix">
+<div class="lfy_ph_number">
+5
+</div>
+<div class="lfy_4touxiang_img">
+<img src="img/erha.jpg" class="lfy_4imghigh1">
+</div>
+<p class="lfy_4name1 font14">小明</p>
+<p class="lfy_4piao1 font12">1000票</p>
+</div>
+</div>
+<div class="lfy_4xuanshou_box">
+<div class="lfy_4xuanshou_box_content clearfix">
+<div class="lfy_ph_number">
+6
+</div>
+<div class="lfy_4touxiang_img">
+<img src="img/erha.jpg" class="lfy_4imghigh1">
+</div>
+<p class="lfy_4name1 font14">小明</p>
+<p class="lfy_4piao1 font12">1000票</p>
+</div>
+</div>
+<div class="lfy_4xuanshou_box">
+<div class="lfy_4xuanshou_box_content clearfix">
+<div class="lfy_ph_number">
+7
+</div>
+<div class="lfy_4touxiang_img">
+<img src="img/erha.jpg" class="lfy_4imghigh1">
+</div>
+<p class="lfy_4name1 font14">小明</p>
+<p class="lfy_4piao1 font12">1000票</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="lfy_4foot_btn">
+<div class="lfy_4foot_icon" onclick="changeColor()" style="width: 33.33%;cursor: pointer;">
+<div class="lfy_4foot_img1">
+</div>
+<p class="lfy_4foot_txt1">首页</p>
+</div>
+<div class="lfy_4foot_icon" style="width: 33.33%">
+<div class="lfy_4foot_img2">
+</div>
+<p class="lfy_4foot_txt2">排行榜</p>
+</div>
+<a href="shuoming.html">
+<div class="lfy_4foot_icon" style="width: 33.33%">
+<div class="lfy_4foot_img4">
+</div>
+<p class="lfy_4foot_txt1">说明</p>
+</div>
+</a>
+</div>
+<script type="text/javascript" src="js/countDown.js"></script>
+<script type="text/javascript">
+            var Height = $(window).height();
+            var Box = $('.lfy_4mingci_box').height();
+        
+            if (Box<Height/2.5) {
+                console.log('')
+                $('#banquan').addClass('weizhi_bq')
+                $('#banquan').removeClass('weizhi_bq1')
+            }
+
+                    //判断iphoneX
+  function isIphoneX(){
+      return /iphone/gi.test(navigator.userAgent) && (screen.height == 812 && screen.width == 375)
+  }
+  if(isIphoneX()){
+    $('.lfy_4foot_btn').css('height', '80px');
+  }else{    
+    $('.lfy_4foot_btn').css('height', '50px');
+  }
+        </script>
+<div id="cnzz" style="display: none"></div>
+<script type="text/javascript">
+            $(function(){
+                $('#cnzz').html('<script src="https://s19.cnzz.com/z_stat.php?id=3782871&web_id=3782871" language="JavaScript"><\/script>')
+            })
+        </script>
+<script type="text/javascript">
+            $('.piao_numer').click(function(){
+                
+                $('.piao_numer').removeClass('renqi_tab');
+                $('.piao_numer').find('.ph_line').hide();
+                $(this).addClass('renqi_tab');
+                $(this).find('.ph_line').show();
+                $('.lfy_4mingci_box').hide();
+                $('.lfy_4mingci_box').eq($(this).index()).show();
+            })
+        </script>
+<script type="text/javascript">
+      
+
+
+
+            function changeColor () {
+                window.parent.postMessage(1,'*');
+                window.location.href="index.html"
+                }
+        </script>
+</body>
+</html>
