@@ -1,0 +1,97 @@
+.mui-bar-nav~.mui-content {
+	padding-top: 40px;
+}
+#more{
+	display: none;
+}
+
+.mui-bar .mui-icon {
+	color: #000;
+}
+
+.check_img {
+	float: left;
+	width: 3.5rem;
+	display: inline;
+	vertical-align: middle;
+}
+
+.mui-table-view-cell { 
+	padding: 15px 0px;
+}
+
+.check_div {
+	display: inline-block;
+	float: left;
+	padding-left:1%;
+	font-size: 0.9rem;
+	width: 82%;
+}
+
+.mui-table-view-cell:after {
+	right: 15px; 
+}
+
+.check_div>.quest {
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	color: #000;
+	width: 100%;
+	float: left;
+	font-size: 1.0rem;
+}
+
+.check_div>div .content {
+	font-size: 0.9rem;
+	color: #555;
+	display: inline-block;
+}
+.p1,.p3,.p4,.p2 {
+	width:50%;
+}
+.mui-table-view-cell>div .p3,.p4 {
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	float: left;
+	line-height: 1.8rem;
+	font-size: 1.0rem;
+}
+.mui-table-view-cell>div .p1,
+.p2 {
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	float: left;
+	line-height:1.8rem;
+	font-size: 0.9rem;
+	color: #555;
+}
+
+.mui-table-view-cell.mui-active {
+	background: #fff;
+}
+
+.mui-segmented-control .mui-control-item.mui-active {
+	background: #fff;
+	color: #007aff;
+	border-bottom: 1px solid #007AFF;
+}
+
+.mui-segmented-control .mui-control-item {
+	background: #fff;
+	color: #A9A9A9;
+	border: none;
+	line-height: 50px;
+	padding-top:5px;
+}
+
+.mui-segmented-control {
+	border-color: #fff;
+}
+
+.mui-table-view:before,
+.mui-table-view:after {
+	height: 0;
+}

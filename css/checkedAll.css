@@ -1,0 +1,21 @@
+.mui-bar .mui-icon{
+	color:#000;
+}
+.mui-segmented-control{
+	border: none;
+	background: #fff;
+	
+}
+.mui-segmented-control .mui-control-item{
+	color:#a9a9a9;
+	border-left:none;
+}
+.mui-segmented-control .mui-control-item.mui-active{
+	border-bottom: 1px solid #007aff;
+	color:#007aff;
+	background: #fff;;
+}
+.mui-bar-nav ~ .mui-content .mui-pull-top-pocket{
+  top: 88px !important;
+}
+

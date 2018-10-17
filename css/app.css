@@ -1,0 +1,16 @@
+			body {
+				background-color: #FFFFFF;
+				font-family: "微软雅黑";
+			}
+			
+			.mui-content {
+				background-color: transparent;
+			}
+			
+			.mui-bar {
+				background-color: #FFFFFF;
+			}
+			
+			.mui-bar a {
+				color: #555555;
+			}

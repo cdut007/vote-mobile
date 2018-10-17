@@ -1,0 +1,31 @@
+select,input[type=text]{
+	margin:10px 10% 10px 10%;
+	width:80%;
+	padding:10px;
+	font-size: 1.0rem;
+	color: #000000;
+}
+.mui-table-view-cell {
+    padding: 5px 0px;
+}
+.mui-segmented-control {
+	padding: 5px;
+	margin:5px 0;
+	background:none;
+}
+
+.mui-segmented-control .mui-control-item {
+	background: #FFFFFF;
+	border-left: none;
+	/*border-radius: 10px;*/
+	line-height: 40px;
+	padding-top: 0;
+	color: #555;
+}
+
+.mui-segmented-control .mui-control-item.mui-active {
+	background: #007aff;
+	color: #007aff;
+	border-bottom: 0;
+	color: #FFFFFF;
+}

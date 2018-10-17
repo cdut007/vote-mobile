@@ -1,0 +1,37 @@
+.ui-refresh .ui-refresh-up, .ui-refresh .ui-refresh-down{
+    
+   
+    /*border-bottom: 1px solid #ccc;*/
+       display: inline-block;
+    vertical-align: middle;
+    color: #fff;
+    width: 92%;
+    height: 0.8rem;
+
+    background-size: 100% 0.8rem;
+    text-align: center;
+    margin: 3% 0 0 4%;
+
+}
+
+@media all and (min-device-width: 768px) and (max-device-width:1024px) {
+    .ui-refresh .ui-refresh-up, .ui-refresh .ui-refresh-down{
+        font-size: 16px;;
+    }
+}
+
+.ui-refresh .ui-refresh-up .ui-loading,
+/*.ui-refresh .ui-refresh-down .ui-loading{
+    display: inline-block;
+    width: 25px;
+    height: 25px;
+    -webkit-background-size: 25px 25px;
+    vertical-align: middle;
+}*/
+.ui-refresh .ui-refresh-up .ui-refresh-label,
+.ui-refresh .ui-refresh-down .ui-refresh-label{
+    display: inline-block;
+    vertical-align: middle;
+    color: #fff;
+      line-height: 0.8rem;
+}

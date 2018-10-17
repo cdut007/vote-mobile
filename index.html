@@ -1,404 +1,101 @@
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="initial-scale=1, width=device-width, maximum-scale=1, user-scalable=no">
-<link href="//lib.baomitu.com/Swiper/3.4.2/css/swiper.css" rel="stylesheet">
-<link rel="stylesheet" type="text/css" href="css/reset.css">
-<link rel="stylesheet" type="text/css" href="css/find.css">
-<script src="https://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
-<link rel="stylesheet" type="text/css" href="css/phone.css">
-<link rel="stylesheet" type="text/css" href="css/style.css">
-<script>
-        (function (doc, win) {
-            var docEl = doc.documentElement,
-                    resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
-                    recalc = function () {
-                        var clientWidth = docEl.clientWidth;
-                        if (!clientWidth) return;
-                        if(clientWidth>=640){
-                            docEl.style.fontSize = '100px';
-                        }else{
-                            docEl.style.fontSize = 100 * (clientWidth / 640) + 'px';
-                        }
-                    };
 
-            if (!doc.addEventListener) return;
-            win.addEventListener(resizeEvt, recalc, false);
-            doc.addEventListener('DOMContentLoaded', recalc, false);
-        })(document, window);
-    </script>
-<script type="text/javascript">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<!--标准mui.css-->
+		<link rel="stylesheet" type="text/css" href="css/common.css" />
+		<link rel="stylesheet" href="css/mui.min.css">
+		
+		<style>
+			.mui-btn {
+				font-size: 16px;
+				padding: 8px;
+				margin: 3px;
+			}
+			
+			h5.mui-content-padded {
+				margin-left: 3px;
+				margin-top: 20px !important;
+			}
+			
+			h5.mui-content-padded:first-child {
+				margin-top: 12px !important;
+			}
+			
+			.ui-alert {
+				text-align: center;
+				padding: 20px 10px;
+				font-size: 16px;
+			}
+		</style>
+	</head>
 
-    </script>
-<style type="text/css">
+	<body>
+		
+		<h1 class="mui-title">正在跳转...</h1>
+		
+		<script src="js/mui.min.js"></script>
+		<script src="js/common.js" type="text/javascript" charset="utf-8"></script>
 
+		<script>
+			
+			mui.showLoading("正在加载..", 'div');
+			var key = decodeURI(request("key"));
+			//localStorage.usersname = usersname;
+			console.log('get key=='+key);
+			if(!key){
+				mui.hideLoading();
+						var btn = ["确定"]; //创建btn数组，其中btn[0]==“确定”
+							mui.confirm("", '无效的链接', btn, function(e) {
+								console.log('current press item=' + e.index)
+			
+							}, 'div');
+					
+			}else{
+				get("/"+key, {}, function(data,body,info) {
+            		localStorage.currentActivity = JSON.stringify(data.activity);
+					mui.hideLoading();
+					mui.openWindow({
 
-		::-webkit-scrollbar {
-		 width: 0.1px;
-	}
+					url: 'main.html',
 
-            .float-box li {
-                position: fixed;
-                top: -20%;
-                list-style: none;
-                display: block;
-                width: 0.3rem;
-                animation: downFloat 10s infinite;
-                -webkit-transition-timing-function: linear;
-                transition-timing-function: linear;
-                z-index: 10;
+					id: 'main.html',
+
+				});
+				
+					}, function() {
+						mui.hideLoading();
+						var btn = ["确定"]; //创建btn数组，其中btn[0]==“确定”
+							mui.confirm("", '无效的链接', btn, function(e) {
+								console.log('current press item=' + e.index)
+			
+							}, 'div');
+					
+					});
+			}
+				
+		
+		//js获取url参数值
+        function request(paras) {
+            var url = location.href;
+            var paraString = url.substring(url.indexOf("?") + 1, url.length).split("&");
+            var paraObj = { };
+            for (i = 0; j = paraString[i]; i++) {
+                paraObj[j.substring(0, j.indexOf("=")).toLowerCase()] = j.substring(j.indexOf("=") + 1, j.length);
             }
-
-            .float-box li img {
-                width: 100%;
+            var returnValue = paraObj[paras.toLowerCase()];
+            if (typeof (returnValue) == "undefined") {
+                return "";
+            } else {
+                return returnValue;
             }
-
-            @keyframes downFloat {
-                0% {
-                    top: -20%;
-
-                }
-                100% {
-                    top: 110%;
-
-                }
-            }
-
-            @keyframes upFloat {
-                0% {
-
-                }
-                100% {
-
-                }
-            }
-            .swiper-slide img{
-                width: 100%;
-
-                display: block;
-            }
-    </style>
-<title>微投票</title>
-</head>
-<body class="h-body">
-<div class="swiper-container">
-<div class="swiper-wrapper">
-<div class="swiper-slide">
-<img src="img/currencyImg1.jpg">
-</div>
-</div>
-<div class="swiper-pagination"></div>
-</div>
-<div class="lfy_icon_btn clearfix">
-<div class="lfy_every_bnt">
-<p class="lfy_icon_txt font14 hp_number_color">0</p>
-<p class="lfy_icon_txt font14 juli">已报名</p>
-</div>
-<div class="lfy_every_bnt">
-<p class="lfy_icon_txt font14 hp_number_color">0</p>
-<p class="lfy_icon_txt font14 juli">总投票</p>
-</div>
-<div class="lfy_every_bnt">
-<p class="lfy_icon_txt font14 hp_number_color">0</p>
-<p class="lfy_icon_txt font14 juli">浏览量</p>
-</div>
-</div>
-<div class="lfy_baoming_btn">
-<p class="lfy_baoming font16">我要报名</p>
-</div>
-<div class="lfy_time font14">
-<div class="count_down">
-距离活动结束：
-<span class="day_num"></span>天
-<span class="hour_num"></span>时
-<span class="min_num"></span>分
-<span class="sec_num"></span>秒
-</div>
-</div>
-<div class="lfy_touxiang_div" style="margin-bottom:20%;">
-<div class="lfy_search clearfix">
-<input type="text" id="nameOrTelOrNum" value="" class="lfy_shuru font14" placeholder="姓名/编号">
-<input type="button" id="search" class="lfy_search_btn font14" value="搜索">
-</div>
-<div class="lfy_xuanshou clearfix">
-<div class="container">
-<aside class="fall-box grid">
-<div class="grid-item item">
-<img class="item-img" src="img/bg_player.png">
-<div class="lfy_name_xuanshou font12">1号选手</div>
-<div class="lfy_piaoshu font12">0票</div>
-<div class="lfy_toupiao_btn">
-<p class="lfy_toupian font14">投票</p>
-</div>
-<p class="lfy_number font14">编号:1</p>
-</div>
-<div class="grid-item item">
-<img class="item-img" src="img/bg_player.png">
-<div class="lfy_name_xuanshou font12">2号选手</div>
-<div class="lfy_piaoshu font12">0票</div>
-<div class="lfy_toupiao_btn">
-<p class="lfy_toupian font14">投票</p>
-</div>
-<p class="lfy_number font14">编号:2</p>
-</div>
-<div class="grid-item item">
-<img class="item-img" src="img/bg_player.png">
-<div class="lfy_name_xuanshou font12">3号选手</div>
-<div class="lfy_piaoshu font12">0票</div>
-<div class="lfy_toupiao_btn">
-<p class="lfy_toupian font14">投票</p>
-</div>
-<p class="lfy_number font14">编号:3</p>
-</div>
-<div class="grid-item item">
-<img class="item-img" src="img/bg_player.png">
-<div class="lfy_name_xuanshou font12">4号选手</div>
-<div class="lfy_piaoshu font12">0票</div>
-<div class="lfy_toupiao_btn">
-<p class="lfy_toupian font14">投票</p>
-</div>
-<p class="lfy_number font14">编号:4</p>
-</div>
-<div class="grid-item item">
-<img class="item-img" src="img/bg_player.png">
-<div class="lfy_name_xuanshou font12">5号选手</div>
-<div class="lfy_piaoshu font12">0票</div>
-<div class="lfy_toupiao_btn">
-<p class="lfy_toupian font14">投票</p>
-</div>
-<p class="lfy_number font14">编号:5</p>
-</div>
-<div class="grid-item item">
-<img class="item-img" src="img/bg_player.png">
-<div class="lfy_name_xuanshou font12">6号选手</div>
-<div class="lfy_piaoshu font12">0票</div>
-<div class="lfy_toupiao_btn">
-<p class="lfy_toupian font14">投票</p>
-</div>
-<p class="lfy_number font14">编号:6</p>
-</div>
-</aside>
-<a href="javascript:;" class="more-a">
-</a>
-</div>
-</div>
-</div>
-<div class="lfy_foot_btn">
-<div class="lfy_foot_icon" style="width:33.33%;">
-<div class="lfy_foot_img1">
-</div>
-<p class="lfy_foot_txt1 font12">首页</p>
-</div>
-<div class="lfy_foot_icon" style="width:33.33%;cursor: pointer;" onclick="changeColor()">
-<div class="lfy_foot_img2">
-</div>
-<p class="lfy_foot_txt font12">排行榜</p>
-</div>
-<div class="lfy_foot_icon" style="width:33.33%;cursor: pointer;" onclick="changeColor2()">
-<div class="lfy_foot_img4">
-</div>
-<p class="lfy_foot_txt font12">说明</p>
-<input type="hidden" value="0" id="pid">
-<input type="hidden" value="true" id="status">
-</div>
-</div>
-<script src="//lib.baomitu.com/jquery/3.2.1/jquery.js"></script>
-<script src="js/imagesloaded.pkgd.min.js" type="text/javascript" charset="utf-8"></script>
-<script src="js/masonry.pkgd.min.js" type="text/javascript" charset="utf-8"></script>
-<script type="text/javascript">
-    $('#nameOrTelOrNum').val('');
-</script>
-<script type="text/javascript">
-
-    $(function(){
-        var pid = $('#pid').val();
-
-        /*瀑布流初始化设置*/
-        var $grid = $('.grid').masonry({
-            itemSelector : '.grid-item',
-            gutter:10
-        });
-
-        // layout Masonry after each image loads
-        $grid.imagesLoaded().done( function() {
-            //console.log('uuuu===');
-            $grid.masonry('layout');
-        });
-
-        var dataFall = [];
-        //var totalItem = 5;
-        var totalPage ='0';
-        var  pageIndex = 0;
-        var  flagLoad = true;  //只有当页面请求加载成功之后，才可以再次请求，避免重复请求后台数据
-        var nameOrTelOrNum = $("#nameOrTelOrNum").val();
-        $(window).scroll(function(){
-            //console.log(flagLoad);
-            $grid.masonry('layout');
-            var scrollTop = $(this).scrollTop();
-            var scrollHeight = $(document).height();
-            var windowHeight = $(this).height();
-            if(pageIndex < totalPage && flagLoad){
-
-                if(scrollTop + windowHeight > scrollHeight-20){
-                    pageIndex++;
-                    $('.more-a').html('加载中...');
-                    $.ajax({
-                        dataType:"json",
-                        type:'get',
-                        data:{page:pageIndex,pid:pid},
-                        url:'https://www.qmwtp.com/ActivityNew/Iframe/lotteryplans',
-                        success:function(result){
-                            dataFall = result.art;
-                            flagLoad = false;
-                            //setTimeout(function() {
-                            appendFall();
-                            //}, 800);
-
-                        },
-                        error:function(e){
-                            console.log(e);
-                            alert('请求失败');
-                        }
-
-                    })
-
-                }
-            }else{
-                setTimeout(function(){
-                    $('.more-a').show();
-                    $(".more-a").html('没有更多了');
-                },2000);
-
-
-
-
-
-            }
-
-        })
-
-
-
-        function appendFall(){
-            $.each(dataFall, function(index ,value) {
-                var dataLength = dataFall.length;
-                $grid.imagesLoaded().done(function() {
-                    $grid.masonry('layout');
-                });
-
-                var $str=$('<div class="grid-item item"><img class="item-img" src="https://www.qmwtp.com/'+value.player_pic+'"><div class="lfy_name_xuanshou font12">'+value.player_name+'</div><div class="lfy_piaoshu font12">'+value.get_votes+'票</div><div class="lfy_toupiao_btn"><p class="lfy_toupian font14">投票</p></div><p class="lfy_number font14">编号:'+value.player_num+'</p></div>');
-                var $items = $str;
-                if(index == dataFall.length -1){
-                    flagLoad = true;
-
-                }
-                $items.imagesLoaded().done(function(){
-                    $grid.masonry('layout');
-                    $grid.append( $items ).masonry('appended', $items);
-                })
-            });
         }
+			
 
-    })
+		</script>
+	</body>
 
-</script>
-<script type="text/javascript" src="js/countDown.js"></script>
-<script type="text/javascript">
-    $(function(){
-        $(".count_down").countDown({
-            startTimeStr:'2018/10/12 20:13:25',//开始时间
-            endTimeStr:'2018/10/27 11:00:00',//结束时间
-            daySelector:'.day_num',
-            hourSelector:'.hour_num',
-            minSelector:'.min_num',
-            secSelector:'.sec_num'
-        });
-    })
-</script>
-<script src="//lib.baomitu.com/Swiper/3.4.2/js/swiper.jquery.js"></script>
-<script>
-    var mySwiper = new Swiper('.swiper-container', {
-        autoplay: 3000,//可选选项，自动滑动
-        autoplayDisableOnInteraction : false,
-        loop:true,
-        height:'auto',
-        pagination : '.swiper-pagination',
-        autoHeight: true,
-
-
-    })
-    //判断iphoneX
-    function isIphoneX(){
-        return /iphone/gi.test(navigator.userAgent) && (screen.height == 812 && screen.width == 375)
-    }
-    if(isIphoneX()){
-        $('.lfy_foot_btn').css('height', '80px');
-    }else{
-        $('.lfy_foot_btn').css('height', '50px');
-    }
-</script>
-<div id="cnzz" style="display: none"></div>
-<script type="text/javascript">
-
-    $(function(){
-        $('#cnzz').html('<script src="https://s19.cnzz.com/z_stat.php?id=3782871&web_id=3782871" language="JavaScript"><\/script>')
-    })
-</script>
-<script type="text/javascript">
-
-
-    var piaofu = ""    //图片路径
-    function playFloatBox(content, type) {
-    var bom = type === 1 ? '<span><i class="fa fa-' + content + '"></i></span>' : '<img class="not-js-style" src="' + content + '">';
-    for (var i = 0; i < 20; i++) {
-        $('.float-box').append('<li>' + bom + '</li>')
-    }
-    var param = {
-        delay: [400, 10000],
-        left: [0, 90],
-        duration: [1000, 20000],
-        width: [3, 5]
-    };
-    $('.float-box li').each(function (index) {
-        var i = index + 1;
-        var delay = Math.floor(param.delay[0] + Math.random() * (param.delay[1] - param.delay[0])) + Math.floor(200 + Math.random() * (200 - 50));
-        var left = Math.floor(param.left[0] + Math.random() * (param.left[1] - param.left[0]));
-        var duration = Math.floor(param.duration[0] + Math.random() * (param.duration[1] - param.duration[0])) + Math.floor(1000 + Math.random() * (1000 - 200));
-        var width = Math.floor(param.width[0] + Math.random() * (param.width[1] - param.width[0] ));
-        $('.float-box li:nth-child(' + i + ')').css({
-            left: left + '%',
-            animationDelay: delay + "ms",
-            animationDuration: duration + "ms",
-            width: width/8 + 'rem',
-            fontSize: width/8 + 'rem'
-        });
-    });
-}
-
-
- playFloatBox(piaofu, 2);
- $(function(){
-        if ($('.float-box').find('img').attr("src")=='') {
-            $('.float-box').remove();
-        }
-    })
-</script>
-<script type="text/javascript">
-
-
-
-
-            function changeColor () {
-
-                window.parent.postMessage(2,'*');
-                window.location.href="rank.html"
-            }
-            function changeColor2 () {
-
-                window.parent.postMessage(2,'*');
-                window.location.href="shuoming.html"
-            }
-        </script>
-</body>
 </html>

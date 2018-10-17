@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title></title>
+<meta charset="utf-8">
+<meta name="viewport" content="initial-scale=1, width=device-width, maximum-scale=1, user-scalable=no">
+<link rel="stylesheet" type="text/css" href="css/swiper.min.css"/>
+<link rel="stylesheet" type="text/css" href="css/find.css"/>
+<script src="https://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+<link rel="stylesheet" type="text/css" href="css/phone.css"/>
+<link rel="stylesheet" type="text/css" href="css/style.css"/>
+<script>
+		(function (doc, win) {
+			var docEl = doc.documentElement,
+				resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+				recalc = function () {
+					var clientWidth = docEl.clientWidth;
+					if (!clientWidth) return;
+					if(clientWidth>=640){
+						docEl.style.fontSize = '100px';
+					}else{
+						docEl.style.fontSize = 100 * (clientWidth / 640) + 'px';
+					}
+				};
+
+				if (!doc.addEventListener) return;
+				win.addEventListener(resizeEvt, recalc, false);
+				doc.addEventListener('DOMContentLoaded', recalc, false);
+		})(document, window);
+		</script>
+<style type="text/css">
+.swiper-slide img{width:100%;display:block}.float-box div{position:fixed;top:-20%;list-style:none;display:block;width:0.3rem;animation:downFloat 10s infinite;-webkit-transition-timing-function:linear;transition-timing-function:linear;z-index:10}.float-box div img{width:100%}@keyframes downFloat{0%{top:-20%}100%{top:110%}}@keyframes upFloat{0%{}100%{}}.hp_mf_chuangjian img{width:100%}@-webkit-keyframes rotation{from{-webkit-transform:rotate(0deg)}to{-webkit-transform:rotate(360deg)}}.Rotation{-webkit-transform:rotate(360deg);animation:rotation 5s linear infinite;-moz-animation:rotation 5s linear infinite;-webkit-animation:rotation 5s linear infinite;-o-animation:rotation 5s linear infinite}.aa{animation-play-state:paused;-webkit-animation-play-state:paused}#m{width:10%;position:fixed;top:5%;right:5%;z-index:999}#m img{width:100%}canvas{display:block;width:100%;height:100%;top:0;left:0;position:fixed}canvas.flare{opacity:0.5}.new_hp_box {width: 88%;margin: 0 auto;background: #fff;padding: 3% 4%;margin-top: 2%;}.lfy_search_btn{width:27%;}.lfy_shuru{padding-left:3%;}.zhezhao2{height: 100%;}.lfy_baoming_btn{height: 45px;}.lfy_baoming{line-height: 45px;}.lfy_shuru{height: 42px;}.lfy_search_btn{height: 42px;}
+.hp_time_txt {
+
+    margin-top: 7px;
+}
+.new_hp_box_content img{
+
+    margin-top: 7px;
+}
+.swiper-container{
+	position: relative;
+}
+.new_hp_box{
+padding-top:1%;
+padding-bottom: 2.5%;
+border-radius: 2px 2px 0 0;
+}
+.gongao {
+    width: 100%;
+    overflow: hidden;
+    height: 30px;
+    line-height: 30px;
+    font-size: 14px;
+    background: #ff9800;
+}
+
+.biaoti_content{
+	color: #758697;
+	width: 96%;
+	margin:0 auto;
+	font-size:14px;
+}
+.marquee{
+	height: 30px;
+    line-height: 30px;
+    width: 90%;
+    float: right;
+    overflow: hidden;
+}
+.js-marquee{
+	color: #fff;
+}
+.top_top{
+	padding-top:30px;
+}
+.left_1{
+	text-align:center;
+	word-wrap:break-word; 
+word-break:break-all; 
+
+}
+.right_1{
+text-align:center;
+}
+
+</style>
+</head>
+<body class="h-body">
+<div class="float-box" style="pointer-events: none;"></div>
+<div class="swiper-container">
+<div class="swiper-wrapper">
+<div class="swiper-slide">
+<img class="lunbo_img" src="img/currencyImg1.jpg">
+</div>
+</div>
+<div class="swiper-pagination"></div>
+</div>
+<div class="lfy_icon_btn clearfix">
+<div class="lfy_every_bnt">
+<p class="lfy_icon_txt  hp_number_color" style="font-size:18px;">1</p>
+<p class="lfy_icon_txt  juli" style="font-size:12px">已报名</p>
+</div>
+<div class="lfy_every_bnt">
+<p class="lfy_icon_txt hp_number_color" style="font-size:18px;">2</p>
+<p class="lfy_icon_txt  juli" style="font-size:12px">总投票</p>
+</div>
+<div class="lfy_every_bnt">
+<p class="lfy_icon_txt  hp_number_color" style="font-size:18px;">27</p>
+<p class="lfy_icon_txt  juli" style="font-size:12px">浏览量</p>
+</div>
+</div>
+<div class="lfy_time font14">
+<div class="index_bg"></div>
+<div class="count_down" style="color: #758697;">
+距离<span class="hp_active_color">活动结束</span>：
+<span class="day_num time1_color" "> </span> 天
+		<span class="hour_num time1_color" "> </span> 时
+<span class="min_num time1_color" "> </span> 分
+		<span class="sec_num time1_color" "> </span> 秒
+</div>
+</div>
+<div class="new_hp_box">
+<div class="new_hp_box_content">
+<div class="timeBg"></div>
+<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAC4AAAAuCAMAAABgZ9sFAAAAb1BMVEUAAAB1hpd1hpd1hpd1hpd1hpd1hpd1hpd1hpd1hpd1hpd1hpd1hpd1hpd1hpd1hpd1hpd1hpd1hpd1hpd1hpd1hpd1hpd1hpd1hpd1hpd1hpd1hpd1hpd1hpd1hpd1hpd1hpd1hpd1hpd1hpd1hpdu/RSqAAAAJHRSTlMA7to6tvYPCQf6pZJwUhfw39TlP8qLZFpOSAKvlSByVBx7YzSRQrHdAAABh0lEQVRIx4zP526DMABF4YtjVtl7ZKvn/Z+xVEIKpDTw/bN8LF3rndc31jhh6Bjb9J4+CjobshDaLtB//LhklmXMytjXpiFn4tpblWqSVjfrMsmHrR0Rk6JdzfXagkn0Z1FaAyYZ9WZMDFCnWrkaINpc6UeAuWrhkYObLF5/PfWSuJA/FrtrcE56ucC3Xk4O1MHy1l3W+oLV+eTCRbMBSPQpVwIM818MRPqcKwLj61cMub+X+znEmgQl3LWX6w5lIKmDYtzPxwI6SRZa7edqwUpeiOsdyT2X0FMPZx3JdYZeDcTH8hgaWaiO5RVYGUiP5SkYZaBjucARZFv5WvjUJCP8KbVcUgCEYSiIuUEVhOJOvP8ZxUUYdLIIOOsu2uZ9Uh8/rg+Rx8vLbLG8WPe8DE81fiofKcqPZEzGY0IEohQBEjOWGAI2FjD2MLU9MJ+x+bC2sbUJDuPgcCyBY8mhBw49R6ohUh3YxoHdr4N+2fSq7MwqMzPqooz5u4b7Je8VYjwrxKhWiBsLnzuBui7j4wAAAABJRU5ErkJggg=="/>
+<p class="hp_time_txt" id="begin">开始时间：</p>
+</div>
+<div class="new_hp_box_content">
+<div class="timeBg"></div>
+<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAC4AAAAuCAMAAABgZ9sFAAAAY1BMVEUAAAB1hpd1hpd1hpd1hpd1hpd1hpd1hpd1hpd1hpd1hpd1hpd1hpd1hpd1hpd1hpd1hpd1hpd1hpd1hpd1hpd1hpd1hpd1hpd1hpd1hpd1hpd1hpd1hpd1hpd1hpd1hpd1hpct41QzAAAAIHRSTlMAB9vu9zq2cFIYD6WS8OVkP9PKi05IAuCulVtZIdV7IkJEAIoAAAF/SURBVEjHjM/ZjoMwDIVhYzIJicpWtm4X//s/5bgS0kzaQvkkxI1zfCyv0jh4LZ0r1Q9jkl3FzZPxt2J7ODSs6ppVEzYeTAvG+dBFMbEL3mGW6VP0CdO3Wd3U9pjT24J4BrSa5cVcKXCOknloFvK2Vh9ZtoKrZEPlQOO/AGtS/simn9L6/K2+grPpnXkHV1lNQCW7KmBaq6hdKV/YvWp1TIClkC+KBYKYosmq7NRpnqF36Gf5au7hbn8PrRzQghdJ4JIckBwkGeEih1xglAGCHBJgeFbv5JDuWV4hyiERVGoQ0zZlRj+shNK+WoyS+Xh/jfvttNxRAISBKAhiI9ZBLRLvf0tJEQadB0JST5Fk32cH3tYPvme8X8aCHbguw1ON+6l8pPD4kYzJuMeECIRHESAx45YYAjZuAWMP49kemM+4zYe1jdvaBIdxBwexZNyx5NADd+g5UsGvHKk5sNt5vwP72Obr4L9sJquMU5ZclEuZruH5kmeFqH2FqGmFeAAsuTSN5wKhHwAAAABJRU5ErkJggg==">
+<p class="hp_time_txt" id="end">结束时间：</p>
+</div>
+</div>
+<div class="hp_line"></div>
+<a href="shuoming.html"><div class="active_sm"><div class="indexBg2"></div>活动说明 >></div></a>
+<a href="https://signup.qmwtp.com/wtp/sg/512bcc2d/fs0ttmwg?openid=oaPnTvmSotWWasECT7u0zKNRvVOU&gzh=qmwhd" id='end_id'>
+<div class="lfy_baoming_btn">
+<p class="lfy_baoming font16">我要报名</p>
+</div>
+</a>
+<div class="lfy_touxiang_div">
+<div   style="display: none;" class="lfy_search clearfix">
+<input type="text" id="nameOrTelOrNum" value="" class="lfy_shuru font14" placeholder="姓名/编号">
+<input type="button" id="search" class="lfy_search_btn font14" value="搜索">
+</div>
+<div class="lfy_xuanshou clearfix">
+<div class="container">
+<aside class="fall-box grid" id="players_container">
+<!--<a href="vote.html" class="player_length">
+<div class="grid-item item">
+<img class="item-img" src="https://www.qmwtp.com/">
+<div class="lfy_name_xuanshou font12">黄凤梅</div>
+<div class="lfy_piaoshu font12">2票</div>
+<div class="lfy_toupiao_btn">
+<p class="lfy_toupian font14">投票</p>
+</div>
+<p class="lfy_number font14">1号</p>
+</div>
+</a>-->
+</aside>
+<a href="javascript:;" class="more-a" style="color: #758697;">
+</a>
+</div>
+</div>
+<div class="clearfix" style="width: 260px;margin:15px auto 20%;">
+</div>
+</div>
+<div class="lfy_foot_btn">
+<div class="lfy_foot_icon" style="width: 33.33%">
+<div class="lfy_foot_img1">
+</div>
+<p class="lfy_foot_txt1 font12">首页</p>
+</div>
+<a href="rank.html">
+<div class="lfy_foot_icon" style="width: 33.33%">
+<div class="lfy_foot_img2">
+</div>
+<p class="lfy_foot_txt font12">排行榜</p>
+</div>
+</a>
+<a href="shuoming.html">
+<div class="lfy_foot_icon" style="width: 33.33%">
+<div class="lfy_foot_img4">
+</div>
+<p class="lfy_foot_txt font12">活动说明</p>
+</div>
+</a>
+</div>
+<input type="hidden" value="fs0ttmwg" id="pid">
+<input type="hidden" value="true" id="status">
+<div class="zhezhao2" style="display:none;">
+<div class="lfy_6bangtou_alert" style="display:block;">
+<div class="xiaolian_box">
+<img src="img/xiaolian.png">
+</div>
+<p class="lfy_6txt_bangtou ">活动结束！</p>
+<div class="my_know">我知道了</div>
+</div>
+</div>
+<script src="js/mui.min.js"></script>
+<script src="js/common.js"></script>
+<script src="js/jquery-3.2.1.min.js"></script>
+<script src="js/imagesloaded.pkgd.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/masonry.pkgd.min.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript" src="js/countDown.js"></script>
+<script type="text/javascript" src="js/swiper.min.js"></script>
+<script type="text/javascript">
+							$(function(){
+
+             var activity = JSON.parse(localStorage.currentActivity);
+             $(document).attr('title',activity.subject);
+             var start = formatFullDateTime(activity.begin);
+             var end = formatFullDateTime(activity.end);
+             $("#begin").text("开始时间："+start);
+             $("#end").text("结束时间："+end);
+				$(".count_down").countDown({
+					startTimeStr: start,//开始时间
+					endTimeStr:end,//结束时间
+					daySelector:'.day_num',
+					hourSelector:'.hour_num',
+					minSelector:'.min_num',
+					secSelector:'.sec_num'
+				});
+
+			});
+			var mySwiper = new Swiper('.swiper-container', {
+				autoplay:true,//等同于以下设置
+				  autoplay: {
+				    delay: 3000,
+				    stopOnLastSlide: false,
+				    disableOnInteraction: false,
+				    },
+
+				loop:true,
+				pagination: {
+				    el: '.swiper-pagination',
+				  },
+				autoHeight: true,
+			});
+			var list_hp = 1;
+			var  music = 1;
+			//变量声明
+			var float_img = "" ;   //图片路径
+ 			var lo_ad = '1';
+							var lo_ad_url = "/hudong/fs0ttmwg/512bcc2d/more"
+						var link_2 = "/hudong/fs0ttmwg/512bcc2d/search";
+ 			var group_1 = "";
+			var link_3 = "/hudong/fs0ttmwg";
+
+	</script>
+<script type="text/javascript">
+		var list_hp = 2;
+	</script>
+<script>
+	
+	var activity = JSON.parse(localStorage.currentActivity);
+		
+		var start_time=activity.begin;
+		var now_time=new Date().getTime();
+		var end_time=activity.end;
+		var project_status = "1";
+		function tishi(start_time,now_time,end_time,project_status){
+			if(project_status=="2")
+	      	{
+	        	$('.zhezhao2').show();
+				$('.lfy_6txt_bangtou').html('活动已关闭');
+	        	return false;
+	      	}
+
+      		if(now_time<start_time){
+				$('.zhezhao2').show();
+				$('.lfy_6txt_bangtou').html('活动即将开始，请报名参与。');
+			}
+
+			if(now_time>end_time)
+			{
+								$('.zhezhao2').show();
+				$('.lfy_6txt_bangtou').html('活动已结束');
+				// $('.my_know').hide();
+			}
+
+		}
+		tishi(start_time,now_time,end_time,project_status);
+		
+		//plays container display
+		var playHtml="";
+		for (var i = 0; i <20; i++) {
+			var sb='<a href="vote.html" class="player_length">';
+				sb+='<div class="grid-item item">';
+				sb+='<img class="item-img" src="https://www.qmwtp.com/">';
+				sb+='<div class="lfy_name_xuanshou font12">黄凤梅</div>';
+				sb+='<div class="lfy_piaoshu font12">2票</div>';
+				sb+='<div class="lfy_toupiao_btn">';
+				sb+='<p class="lfy_toupian font14">投票</p>';
+				sb+='</div>';
+				sb+='<p class="lfy_number font14">1号</p>';
+				sb+='</div>';
+				sb+='</a>';
+				playHtml+=sb;
+		}
+		$("#players_container").html(playHtml);
+
+</script>
+
+<script type="text/javascript" src="js/index.js"></script>
+<script>
+	playFloatBox(float_img, 2);
+	
+	if($('.swiper-slide').length==3){
+			
+		mySwiper.autoplay.stop();
+	}
+
+</script>
+</body>
+</html>

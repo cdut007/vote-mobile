@@ -46,7 +46,7 @@
 <div class="lfy_5box">
 <div class="imgImg"></div>
 <div class="lfy_5shuoming_content" style="margin-bottom:20%;">
-<div style="width: 92%;margin: 0 auto;">
+<div style="width: 92%;margin: 0 auto;" id="content">
 <div class="active" style="width: 92%;margin: 0 auto;">
 </div>
 </div>
@@ -71,8 +71,13 @@
 <p class="lfy_5foot_txt1">说明</p>
 </div>
 </div>
+<script src="js/jquery-3.2.1.min.js"></script>
 <script src="js/ASmin.js"></script>
 <script>
+
+       var activity = JSON.parse(localStorage.currentActivity);
+            
+             $("#content").html(activity.content);
 
     asjs();//页面ajax追加数据加载更多每次执行的时候走一下这个方法，渲染后加载出来的标签
     function add(){
@@ -82,7 +87,7 @@
 function changeColor () {
               
                 window.parent.postMessage(1,'*');
-                window.location.href="index.html"
+                window.location.href="main.html"
             }
 </script>
 </body>
