@@ -135,7 +135,7 @@ text-align:center;
 <div class="hp_line"></div>
 <a href="shuoming.html"><div class="active_sm"><div class="indexBg2"></div>活动说明 >></div></a>
 <a href="https://signup.qmwtp.com/wtp/sg/512bcc2d/fs0ttmwg?openid=oaPnTvmSotWWasECT7u0zKNRvVOU&gzh=qmwhd" id='end_id'>
-<div class="lfy_baoming_btn">
+<div class="lfy_baoming_btn" style="display: none;">
 <p class="lfy_baoming font16">我要报名</p>
 </div>
 </a>
@@ -206,9 +206,11 @@ text-align:center;
 <script type="text/javascript" src="js/countDown.js"></script>
 <script type="text/javascript" src="js/swiper.min.js"></script>
 <script type="text/javascript">
+	 var activity = JSON.parse(localStorage.currentActivity);
+	
 							$(function(){
 
-             var activity = JSON.parse(localStorage.currentActivity);
+            
              $(document).attr('title',activity.subject);
              var start = formatFullDateTime(activity.begin);
              var end = formatFullDateTime(activity.end);
@@ -238,20 +240,18 @@ text-align:center;
 				  },
 				autoHeight: true,
 			});
-			var list_hp = 1;
+			var list_hp = 2;
 			var  music = 1;
 			//变量声明
 			var float_img = "" ;   //图片路径
  			var lo_ad = '1';
-							var lo_ad_url = "/hudong/fs0ttmwg/512bcc2d/more"
+						var lo_ad_url = domain+"/participant/list?activityId="+activity.id+"&limit=100";
 						var link_2 = "/hudong/fs0ttmwg/512bcc2d/search";
  			var group_1 = "";
 			var link_3 = "/hudong/fs0ttmwg";
 
 	</script>
-<script type="text/javascript">
-		var list_hp = 2;
-	</script>
+
 <script>
 	
 	var activity = JSON.parse(localStorage.currentActivity);
@@ -284,22 +284,24 @@ text-align:center;
 		tishi(start_time,now_time,end_time,project_status);
 		
 		//plays container display
-		var playHtml="";
-		for (var i = 0; i <20; i++) {
-			var sb='<a href="vote.html" class="player_length">';
-				sb+='<div class="grid-item item">';
-				sb+='<img class="item-img" src="https://www.qmwtp.com/">';
-				sb+='<div class="lfy_name_xuanshou font12">黄凤梅</div>';
-				sb+='<div class="lfy_piaoshu font12">2票</div>';
-				sb+='<div class="lfy_toupiao_btn">';
-				sb+='<p class="lfy_toupian font14">投票</p>';
-				sb+='</div>';
-				sb+='<p class="lfy_number font14">1号</p>';
-				sb+='</div>';
-				sb+='</a>';
-				playHtml+=sb;
-		}
-		$("#players_container").html(playHtml);
+//		var playHtml="";
+//		var player = {username:'黄凤梅',voteCount:5}
+//		for (var i = 0; i <20; i++) {
+//			var index = i+1;
+//			var sb='<a href="vote.html" class="player_length">';
+//				sb+='<div class="grid-item item">';
+//				sb+='<img class="item-img" src="img/avatar.png">';
+//				sb+='<div class="lfy_name_xuanshou font12">'+player.username+'</div>';
+//				sb+='<div class="lfy_piaoshu font12">'+player.voteCount+'票</div>';
+//				sb+='<div class="lfy_toupiao_btn">';
+//				sb+='<p class="lfy_toupian font14">投票</p>';
+//				sb+='</div>';
+//				sb+='<p class="lfy_number font14">'+index+'号</p>';
+//				sb+='</div>';
+//				sb+='</a>';
+//				playHtml+=sb;
+//		}
+//		$("#players_container").html(playHtml);
 
 </script>
 
@@ -311,6 +313,8 @@ text-align:center;
 			
 		mySwiper.autoplay.stop();
 	}
+	
+	var firstLoad = true;
 
 </script>
 </body>

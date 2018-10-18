@@ -27,7 +27,8 @@ if($(j).attr('src') == 'https://www.qmwtp.com/'){
 })
 
 }
-if (list_hp==2) {
+
+
    $(function(){
             var pid = $('#pid').val();
             /*瀑布流初始化设置*/
@@ -46,15 +47,32 @@ if (list_hp==2) {
             var  pageIndex = 0;
             var  flagLoad = true;  //只有当页面请求加载成功之后，才可以再次请求，避免重复请求后台数据
             var nameOrTelOrNum = $("#nameOrTelOrNum").val();
+            
+            if(firstLoad){
+            	firstLoad=false;
+            	 ajaxCallPlayers();
+            }
+            
             $(window).scroll(function(){
-                //console.log(flagLoad);
+                console.log(flagLoad);
                 $grid.masonry('layout');
                 var scrollTop = $(this).scrollTop();
                 var scrollHeight = $(document).height();
                 var windowHeight = $(this).height();
             if(pageIndex < totalPage && flagLoad){
                 if(scrollTop + windowHeight > scrollHeight-20){
-                    flagLoad = false;
+                    ajaxCallPlayers();
+                }
+            }else{
+                setTimeout(function(){
+                    $('.more-a').show();
+                    $(".more-a").html('没有更多了');
+                },2000);
+            }
+    });
+    
+    function ajaxCallPlayers(){
+    	flagLoad = false;
                     pageIndex++;
                     $('.more-a').html('加载中...');
                     $.ajax({
@@ -63,9 +81,9 @@ if (list_hp==2) {
                         data:{page:pageIndex},
                         url:lo_ad_url,
                         success:function(result){
-
-                            dataFall = result.art;
-                            flagLoad = false;
+							if(result.code==0){
+							 dataFall = result.page.list;
+							  flagLoad = false;
                             //alert(result.art);
 
                                appendFall();
@@ -81,21 +99,18 @@ if (list_hp==2) {
 
 
                                       })
+							}else{
+								flagLoad = true;
+							}
+                           
+                           
 
                         },
                         error:function(e){
                             flagLoad = true;
                         }
                     })
-
-                }
-            }else{
-                setTimeout(function(){
-                    $('.more-a').show();
-                    $(".more-a").html('没有更多了');
-                },2000);
-            }
-    });
+    }
 
 
 
@@ -106,7 +121,11 @@ if (list_hp==2) {
                     $grid.imagesLoaded().done(function() {
                         $grid.masonry('layout');
                     });
-                    var $str = $('<a href="' + value.encrypt_param + '"><div class="grid-item item"><img class="item-img"  src="'+value.player_slpic+'"><div class="lfy_name_xuanshou font12">' + value.player_name + '</div><div class="lfy_piaoshu font12">' + value.get_votes + '票</div><div class="lfy_toupiao_btn"><p class="lfy_toupian font14">投票</p></div><p class="lfy_number font14">' + value.player_num + '号</p></div></a>');
+                    value.playerHeadImg = "img/avatar.png";
+                    value.playerNum = index+1;
+                    value.voteCount = 5;
+                    value.vote_link='vote.html';
+                    var $str = $('<a href="' + value.vote_link + '"><div class="grid-item item"><img class="item-img"  src="'+value.playerHeadImg+'"><div class="lfy_name_xuanshou font12">' + value.username + '</div><div class="lfy_piaoshu font12">' + value.voteCount + '票</div><div class="lfy_toupiao_btn"><p class="lfy_toupian font14">投票</p></div><p class="lfy_number font14">' + value.playerNum + '号</p></div></a>');
 
                     var $items = $str;
                     if(index == dataFall.length -1){
@@ -124,7 +143,7 @@ if (list_hp==2) {
                 });
             }
         })
-}
+
 
         $('#nameOrTelOrNum').val('');
         $('#search').click(function(){
