@@ -133,7 +133,7 @@ text-align:center;
 </div>
 </div>
 <div class="hp_line"></div>
-<a href="shuoming.html"><div class="active_sm"><div class="indexBg2"></div>活动说明 >></div></a>
+<a href="shuoming.html" id="shuoming2"><div class="active_sm"><div class="indexBg2"></div>活动说明 >></div></a>
 <a href="https://signup.qmwtp.com/wtp/sg/512bcc2d/fs0ttmwg?openid=oaPnTvmSotWWasECT7u0zKNRvVOU&gzh=qmwhd" id='end_id'>
 <div class="lfy_baoming_btn" style="display: none;">
 <p class="lfy_baoming font16">我要报名</p>
@@ -172,14 +172,14 @@ text-align:center;
 </div>
 <p class="lfy_foot_txt1 font12">首页</p>
 </div>
-<a href="rank.html">
+<a href="rank.html" id="rank">
 <div class="lfy_foot_icon" style="width: 33.33%">
 <div class="lfy_foot_img2">
 </div>
 <p class="lfy_foot_txt font12">排行榜</p>
 </div>
 </a>
-<a href="shuoming.html">
+<a href="shuoming.html" id="shuoming">
 <div class="lfy_foot_icon" style="width: 33.33%">
 <div class="lfy_foot_img4">
 </div>
@@ -315,6 +315,12 @@ text-align:center;
 	}
 	
 	var firstLoad = true;
+	
+          $('#rank').attr('href','rank.html?key='+localStorage.shortUrl);
+         
+          $('#shuoming2').attr('href','shuoming.html?key='+localStorage.shortUrl);
+          $('#shuoming').attr('href','shuoming.html?key='+localStorage.shortUrl);
+         
 
 </script>
 </body>

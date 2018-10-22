@@ -58,7 +58,7 @@
 </div>
 <p class="lfy_5foot_txt">首页</p>
 </div>
-<a href="rank.html">
+<a href="rank.html" id="rank">
 <div class="lfy_5foot_icon" style="width:33.33%;">
 <div class="lfy_5foot_img2">
 </div>
@@ -71,6 +71,8 @@
 <p class="lfy_5foot_txt1">说明</p>
 </div>
 </div>
+<script src="js/mui.min.js"></script>
+<script src="js/common.js"></script>
 <script src="js/jquery-3.2.1.min.js"></script>
 <script src="js/ASmin.js"></script>
 <script>
@@ -83,11 +85,13 @@
     function add(){
 
     }
+    
+     $('#rank').attr('href','rank.html?key='+localStorage.shortUrl);
 
 function changeColor () {
               
                 window.parent.postMessage(1,'*');
-                window.location.href="main.html"
+                window.location.href="main.html?key="+localStorage.shortUrl
             }
 </script>
 </body>

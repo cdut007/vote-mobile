@@ -130,7 +130,7 @@ if($(j).attr('src') == 'https://www.qmwtp.com/'){
                     });
                     value.playerHeadImg = "img/avatar.png";
                
-                    value.vote_link='vote.html?playerId='+value.id;
+                    value.vote_link='vote.html?playerId='+value.id+'&key='+localStorage.shortUrl;
                     var $str = $('<a href="' + value.vote_link + '"><div class="grid-item item"><img class="item-img"  src="'+value.playerHeadImg+'"><div class="lfy_name_xuanshou font12">' + value.username + '</div><div class="lfy_piaoshu font12">' + value.voteCount + '票</div><div class="lfy_toupiao_btn"><p class="lfy_toupian font14">投票</p></div><p class="lfy_number font14">' + value.num + '号</p></div></a>');
 
                     var $items = $str;

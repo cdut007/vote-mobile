@@ -16,6 +16,52 @@ var mockData = false;
 
 var clorArray = ['#00a4eb', '#6d9ee1', '#19cba3', '#948763', '#fbac2a'];
 
+var key = decodeURI(request("key"));
+			
+		
+if(!isDebug){
+	console.log('current key=='+key+";localStorage.shortUrl="+localStorage.shortUrl);
+			if(key){
+				if(localStorage.shortUrl!=key){
+						get("/"+key, {}, function(data,body,info) {
+            		localStorage.currentActivity = JSON.stringify(data.activity);
+            		localStorage.shortUrl = key+"";
+					mui.hideLoading();
+					mui.openWindow({
+
+					url: 'main.html?key='+key,
+
+					id: 'main.html',
+
+				});
+				
+					}, function() {
+						mui.hideLoading();
+						var btn = ["确定"]; //创建btn数组，其中btn[0]==“确定”
+							mui.confirm("", '无效的链接', btn, function(e) {
+								console.log('current press item=' + e.index)
+			
+							}, 'div');
+					
+					});
+				}else{
+					//ignore
+//						$.each($("a"),function(i,n){
+//					    var $href = $(this).attr("href");
+//					    $(this).attr("href",$href+"&key="+key);
+//					});
+				}
+			}else{
+				//not exsit
+					mui.openWindow({
+
+					url: 'index.html?key=invaid',
+
+					id: 'index.html',
+
+				});
+			}
+}
 
 String.prototype.trim = function() {
 	return this.replace(/^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g, '');
@@ -83,7 +129,7 @@ function uploadFile(apiName, body, sucs, fail) {
 		data: body,
 		processData: false,  // 告诉jQuery不要去处理发送的数据
         contentType: false,   // 告诉jQuery不要去设置Content-Type请求头
-
+        headers:{'Content-Type':'application/json'},     
 		dataType: 'json', //服务器返回json格式数据
 		type: 'POST', //HTTP请求类型
 		timeout: 20000, //超时时间设置为20秒；
@@ -158,6 +204,7 @@ function post(apiName, body, sucs, fail) {
 		crossDomain: true,
 		data: body,
 		dataType: 'json', //服务器返回json格式数据
+		 headers:{'Content-Type':'application/json'},    
 		type: 'POST', //HTTP请求类型
 		timeout: 20000, //超时时间设置为20秒；
 		success: function(data) {

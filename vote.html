@@ -465,6 +465,9 @@
 			</script>
 			<script type="text/javascript">
 				$(function() {
+					
+					 $('#songlw_url').attr('href','rank.html?key='+localStorage.shortUrl);
+					  $('#sy').attr('href','main.html?key='+localStorage.shortUrl);
 
 					var songStr = " \u9001ta\u793c\u7269\u52a0\u7968";
 
@@ -544,6 +547,8 @@
 	</body>
 
 </html>
+<script src="http://pv.sohu.com/cityjson?ie=utf-8"></script>  
+
 <script>
 	var activity = JSON.parse(localStorage.currentActivity);
 
@@ -597,8 +602,32 @@
 		$('.lfy_6bangtou_alert').hide();
 		$('.lfy_6zhezhao').hide();
 	})
+	
+	
+	if(localStorage.currentPlayer){
+		var player = JSON.parse(localStorage.currentPlayer);
+		post("/participant/scan", {
+		activityId: activity.id,
+		id:player.id
+	}, function(data, body, info) {
+		
 
+	}, function() {
+
+	});
+	}
+	
+	
+	
 	$('#v_btn').click(function() {
+		
+		var player = JSON.parse(localStorage.currentPlayer);
+		post("/voteitem/save", {
+		activityId: activity.id,
+		voterId:'xxx',
+		playerId:player.id,
+		voterName:returnCitySN["cip"]
+	}, function(data, body, info) {
 		$('.zhezhao2').show();
 		var player = JSON.parse(localStorage.currentPlayer);
 		$('#user_vote_tips').html(player.num + "号 " + player.username);
@@ -607,7 +636,14 @@
 		$('.lfy_6cha').click(function() {
 			$('.lfy_6zhezhao').hide();
 			$('.zhezhao2').hide();
+			 window.location.reload();
 		})
+
+	}, function() {
+
+	});
+		
+		
 		//$('.lfy_6chenggong_alert').show();
 	})
 

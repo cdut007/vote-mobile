@@ -57,10 +57,11 @@
 			}else{
 				get("/"+key, {}, function(data,body,info) {
             		localStorage.currentActivity = JSON.stringify(data.activity);
+            		localStorage.shortUrl = key+"";
 					mui.hideLoading();
 					mui.openWindow({
 
-					url: 'main.html',
+					url: 'main.html?key='+key,
 
 					id: 'main.html',
 
