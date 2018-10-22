@@ -49,8 +49,6 @@ if(!isDebug){
 				get("/"+key, {}, function(data,body,info) {
             		localStorage.currentActivity = JSON.stringify(data.activity);
             		localStorage.shortUrl = key+"";
-					
-				});
 				
 					}, function() {
 			
