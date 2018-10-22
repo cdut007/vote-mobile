@@ -2,7 +2,7 @@ var isDebug = false;
 var isHttpDebug = false;
 var isFirstLogin = true;
 var testHttpRootDomain = localStorage.getItem('httpRootDomain');
-var domain = "http://"+window.location.hostname+":9900"
+var domain = window.location.protocol+"//"+window.location.hostname+":9900"
 if(testHttpRootDomain){
 
 }else{

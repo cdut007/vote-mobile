@@ -215,28 +215,7 @@ if (isIphoneX()) {
     //详情页面js
         //-------------------------------------------
 
-                    // 遮罩跟弹窗
-                    $('.lfy_6zhezhao').height($(window).height());
-                    $('.lfy_6cha').click(function(){
-                        $('.lfy_6zhezhao').hide();
-                        $('.lfy_6chenggong_alert').hide();
-                    })
-
-                    $('.lfy_6bangtou_txt').click(function(){
-                        $('.lfy_6zhezhao').show();
-                        $('.fenxiang_img').show();
-                        $('.zhidao').show();
-                    })
-                    $('.zhidao').click(function(){
-                        $('.lfy_6zhezhao').hide();
-                        $('.fenxiang_img').hide();
-                        $('.zhidao').hide();
-                    })
-                    $('.guanbi_img').click(function(){
-                        $('.lfy_6bangtou_alert').hide();
-                        $('.lfy_6zhezhao').hide();
-                    })
-
+                   
 
                 function isIphoneX(){
                       return /iphone/gi.test(navigator.userAgent) && (screen.height == 812 && screen.width == 375)

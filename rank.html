@@ -70,13 +70,13 @@
 </head>
 <body class="p_list">
 <div class="lfy_4head clearfix">
-<p class="lfy_4head_txt font18">2018-12-12 12:12:12结束</p>
+<p class="lfy_4head_txt font18" id="end"></p>
 <div class="lfy_4jishi_box count_down">
 剩余
-<span style="font-size: 20px;" class="day_num"></span><span style="font-size: 20px;">20天</span>
-<span style="font-size: 20px;" class="hour_num"></span><span style="font-size: 20px;">20时</span>
-<span style="font-size: 20px;" class="min_num"></span><span style="font-size: 20px;">20分</span>
-<span style="font-size: 20px;" class="sec_num"></span><span style="font-size: 20px;">20秒</span>
+<span style="font-size: 20px;" class="day_num"></span><span style="font-size: 20px;">0天</span>
+<span style="font-size: 20px;" class="hour_num"></span><span style="font-size: 20px;">0时</span>
+<span style="font-size: 20px;" class="min_num"></span><span style="font-size: 20px;">0分</span>
+<span style="font-size: 20px;" class="sec_num"></span><span style="font-size: 20px;">0秒</span>
 </div>
 </div>
 <div class="lfy_4paihang_box">
@@ -88,8 +88,8 @@
 票数排行榜
 </div>
 </div>
-<div class="lfy_4mingci_box clearfix">
-<ul class="rank_box clearfix">
+<div class="lfy_4mingci_box clearfix" id="rank_list">
+<!--<ul class="rank_box clearfix">
 <li class="rank_two">
 <p class="rank_title">NO.2</p>
 <div class="rank_img">
@@ -114,44 +114,9 @@
 <div class="rank_player_name">小明</div>
 <div class="rank_player_paio"><span style="font-weight: bold;">1000</span>票</div>
 </li>
-</ul>
-<div class="lfy_4xuanshou_box">
-<div class="lfy_4xuanshou_box_content clearfix">
-<div class="lfy_ph_number">
-4
-</div>
-<div class="lfy_4touxiang_img">
-<img src="img/erha.jpg" class="lfy_4imghigh1">
-</div>
-<p class="lfy_4name1 font14">小明</p>
-<p class="lfy_4piao1 font12">1000票</p>
-</div>
-</div>
-<div class="lfy_4xuanshou_box">
-<div class="lfy_4xuanshou_box_content clearfix">
-<div class="lfy_ph_number">
-5
-</div>
-<div class="lfy_4touxiang_img">
-<img src="img/erha.jpg" class="lfy_4imghigh1">
-</div>
-<p class="lfy_4name1 font14">小明</p>
-<p class="lfy_4piao1 font12">1000票</p>
-</div>
-</div>
-<div class="lfy_4xuanshou_box">
-<div class="lfy_4xuanshou_box_content clearfix">
-<div class="lfy_ph_number">
-6
-</div>
-<div class="lfy_4touxiang_img">
-<img src="img/erha.jpg" class="lfy_4imghigh1">
-</div>
-<p class="lfy_4name1 font14">小明</p>
-<p class="lfy_4piao1 font12">1000票</p>
-</div>
-</div>
-<div class="lfy_4xuanshou_box">
+</ul>-->
+
+<!--<div class="lfy_4paihang_box">
 <div class="lfy_4xuanshou_box_content clearfix">
 <div class="lfy_ph_number">
 7
@@ -162,7 +127,8 @@
 <p class="lfy_4name1 font14">小明</p>
 <p class="lfy_4piao1 font12">1000票</p>
 </div>
-</div>
+</div>-->
+
 </div>
 </div>
 </div>
@@ -185,6 +151,8 @@
 </div>
 </a>
 </div>
+<script src="js/mui.min.js"></script>
+<script type="text/javascript" src="js/common.js"></script>
 <script type="text/javascript" src="js/countDown.js"></script>
 <script type="text/javascript">
             var Height = $(window).height();
@@ -205,13 +173,10 @@
   }else{    
     $('.lfy_4foot_btn').css('height', '50px');
   }
-        </script>
-<div id="cnzz" style="display: none"></div>
-<script type="text/javascript">
-            $(function(){
-                $('#cnzz').html('<script src="https://s19.cnzz.com/z_stat.php?id=3782871&web_id=3782871" language="JavaScript"><\/script>')
-            })
-        </script>
+  
+				
+       </script>
+
 <script type="text/javascript">
             $('.piao_numer').click(function(){
                 
@@ -225,9 +190,72 @@
         </script>
 <script type="text/javascript">
       
-
-
-
+          var activity = JSON.parse(localStorage.currentActivity);
+          $(function(){
+          	 var end = formatFullDateTime(activity.end);
+       $("#end").text(end+"结束");
+             
+	   $(".count_down").countDown({
+					endTimeStr:end,//结束时间
+					daySelector:'.day_num',
+					hourSelector:'.hour_num',
+					minSelector:'.min_num',
+					secSelector:'.sec_num'
+				});
+				
+  
+          });
+          
+          
+        var rankHtml="";
+		var player = {username:'黄凤梅',voteCount:5}
+		
+		var rankWinners='<ul class="rank_box clearfix">'+
+						'<li class="rank_two">'+
+						'<p class="rank_title">NO.2</p>'+
+						'<div class="rank_img">'+
+						'<img src="img/avatar.png">'+
+						'</div>'+
+						'<div class="rank_player_name">小明</div>'+
+						'<div class="rank_player_paio"><span style="font-weight: bold;">1000</span>票</div>'+
+						'</li>'+
+						'<li class="rank_one">'+
+						'<img class="huangguan" src="img/huangguan.png">'+
+						'<div class="rank_img2">'+
+						'<img src="img/avatar.png">'+
+						'</div>'+
+						'<div class="rank_player_name" style="margin-top: 9px;font-size:16px;font-weight: bold;">小明</div>'+
+						'<div class="rank_player_paio"><span style="font-weight: bold;font-size:16px;">1000</span>票</div>'+
+						'</li>'+
+						'<li class="rank_two">'+
+						'<p class="rank_title">NO.3</p>'+
+						'<div class="rank_img">'+
+						'<img src="img/avatar.png">'+
+						'</div>'+
+						'<div class="rank_player_name">小明</div>'+
+						'<div class="rank_player_paio"><span style="font-weight: bold;">1000</span>票</div>'+
+						'</li>'+
+						'</ul>';
+		
+		rankHtml+=rankWinners;
+		for (var i = 3; i <20; i++) {
+			var index = i+1;
+			var sb= '<div class="lfy_4paihang_box">'+
+					'  <div class="lfy_4xuanshou_box_content clearfix">'+
+					'    <div class="lfy_ph_number">'+index+'</div>'+
+					'    <div class="lfy_4touxiang_img">'+
+					'      <img src="img/avatar.png" class="lfy_4imghigh1"></div>'+
+					'    <p class="lfy_4name1 font14">小明</p>'+
+					'    <p class="lfy_4piao1 font12">1000票</p></div>'+
+					'</div>';
+				rankHtml+=sb;
+		}
+		$("#rank_list").html(rankHtml);
+          
+          
+          
+          
+      
             function changeColor () {
                 window.parent.postMessage(1,'*');
                 window.location.href="main.html"

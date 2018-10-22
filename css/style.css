@@ -267,7 +267,7 @@ img{display:block;}
 .lfy_6zhezhao{width:100%;background-color:#000;opacity:0.7;position:fixed;top:0;z-index:10;}
 .lfy_6bangtou_alert{width:70%;position:fixed;top:30%;padding-bottom:3%;background:#fff;left:15%;z-index:15;border-radius:3px;display:none;padding:3% 0 4%;}
 .lfy_6txt_bangtou{width:100%;text-align:center;color:#758697;font-size:14px;}
-.lfy_6chenggong_alert{width:70%;position:fixed;top:25%;left:15%;z-index:16;background:#fff;border-radius:3px;padding:3% 0;}
+.lfy_6chenggong_alert{background:rgba(000,000,000,0.7);width:70%;position:fixed;top:25%;left:15%;z-index:16;background:#fff;border-radius:3px;padding:3% 0;}
 .yuan_duihao img{width:40px;height:28px;float:left;margin:10px;margin-top:17px;}
 .lfy_6gongxi{color:#31c9b1;text-align:center;font-size:16px;margin-top:3%;}
 .lfy_6gongxi1{width:100%;text-align:center;font-size:16px;color:#758697;margin-top:3%;}
