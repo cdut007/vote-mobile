@@ -78,7 +78,7 @@ if($(j).attr('src') == 'https://www.qmwtp.com/'){
                     $.ajax({
                         dataType:"json",
                         type:'get',
-                        data:{page:pageIndex},
+                        data:{page:pageIndex,order:'ASC',sidx:'createTime'},
                         url:lo_ad_url,
                         success:function(result){
 							if(result.code==0){
@@ -122,10 +122,9 @@ if($(j).attr('src') == 'https://www.qmwtp.com/'){
                         $grid.masonry('layout');
                     });
                     value.playerHeadImg = "img/avatar.png";
-                    value.playerNum = index+1;
-                    value.voteCount = 5;
-                    value.vote_link='vote.html';
-                    var $str = $('<a href="' + value.vote_link + '"><div class="grid-item item"><img class="item-img"  src="'+value.playerHeadImg+'"><div class="lfy_name_xuanshou font12">' + value.username + '</div><div class="lfy_piaoshu font12">' + value.voteCount + '票</div><div class="lfy_toupiao_btn"><p class="lfy_toupian font14">投票</p></div><p class="lfy_number font14">' + value.playerNum + '号</p></div></a>');
+               
+                    value.vote_link='vote.html?playerId='+value.id;
+                    var $str = $('<a href="' + value.vote_link + '"><div class="grid-item item"><img class="item-img"  src="'+value.playerHeadImg+'"><div class="lfy_name_xuanshou font12">' + value.username + '</div><div class="lfy_piaoshu font12">' + value.voteCount + '票</div><div class="lfy_toupiao_btn"><p class="lfy_toupian font14">投票</p></div><p class="lfy_number font14">' + value.num + '号</p></div></a>');
 
                     var $items = $str;
                     if(index == dataFall.length -1){

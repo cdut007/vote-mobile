@@ -208,49 +208,80 @@
           
           
         var rankHtml="";
-		var player = {username:'黄凤梅',voteCount:5}
-		
-		var rankWinners='<ul class="rank_box clearfix">'+
-						'<li class="rank_two">'+
+        
+         get("/participant/list", {
+         	activityId:activity.id,
+         	limit:100,
+         	order:'DESC',sidx:'voteCount'
+         }, function(data,body,info) {
+         	var datalist = data.page.list;
+         	
+         	if(datalist.length==0){
+         		return;
+         	}
+         	
+         	var rankTwo ='';
+         	if(datalist.length>1){
+         		rankTwo='<li class="rank_two">'+
 						'<p class="rank_title">NO.2</p>'+
 						'<div class="rank_img">'+
 						'<img src="img/avatar.png">'+
 						'</div>'+
-						'<div class="rank_player_name">小明</div>'+
-						'<div class="rank_player_paio"><span style="font-weight: bold;">1000</span>票</div>'+
-						'</li>'+
+						'<div class="rank_player_name">'+datalist[1].username+'</div>'+
+						'<div class="rank_player_paio"><span style="font-weight: bold;">'+datalist[1].voteCount+'</span>票</div>'+
+						'</li>';
+         	}
+         	
+         	var rankThree ='';
+         	if(datalist.length>2){
+         		rankThree='<li class="rank_two">'+
+						'<p class="rank_title">NO.3</p>'+
+						'<div class="rank_img">'+
+						'<img src="img/avatar.png">'+
+						'</div>'+
+						'<div class="rank_player_name">'+datalist[2].username+'</div>'+
+						'<div class="rank_player_paio"><span style="font-weight: bold;">'+datalist[2].voteCount+'</span>票</div>'+
+						'</li>';
+         	}
+         	
+            var rankWinners='<ul class="rank_box clearfix">'+
+						rankTwo +
 						'<li class="rank_one">'+
 						'<img class="huangguan" src="img/huangguan.png">'+
 						'<div class="rank_img2">'+
 						'<img src="img/avatar.png">'+
 						'</div>'+
-						'<div class="rank_player_name" style="margin-top: 9px;font-size:16px;font-weight: bold;">小明</div>'+
-						'<div class="rank_player_paio"><span style="font-weight: bold;font-size:16px;">1000</span>票</div>'+
+						'<div class="rank_player_name" style="margin-top: 9px;font-size:16px;font-weight: bold;">'+datalist[0].username+'</div>'+
+						'<div class="rank_player_paio"><span style="font-weight: bold;font-size:16px;">'+datalist[0].voteCount+'</span>'+'票</div>'+
 						'</li>'+
-						'<li class="rank_two">'+
-						'<p class="rank_title">NO.3</p>'+
-						'<div class="rank_img">'+
-						'<img src="img/avatar.png">'+
-						'</div>'+
-						'<div class="rank_player_name">小明</div>'+
-						'<div class="rank_player_paio"><span style="font-weight: bold;">1000</span>票</div>'+
-						'</li>'+
+						 rankThree+
 						'</ul>';
 		
 		rankHtml+=rankWinners;
-		for (var i = 3; i <20; i++) {
+		if(datalist.length>3){
+         		for (var i = 3; i <datalist.length; i++) {
 			var index = i+1;
+			var player=datalist[i];
 			var sb= '<div class="lfy_4paihang_box">'+
 					'  <div class="lfy_4xuanshou_box_content clearfix">'+
 					'    <div class="lfy_ph_number">'+index+'</div>'+
 					'    <div class="lfy_4touxiang_img">'+
 					'      <img src="img/avatar.png" class="lfy_4imghigh1"></div>'+
-					'    <p class="lfy_4name1 font14">小明</p>'+
-					'    <p class="lfy_4piao1 font12">1000票</p></div>'+
+					'    <p class="lfy_4name1 font14">'+player.username+'</p>'+
+					'    <p class="lfy_4piao1 font12">'+player.voteCount+'票</p></div>'+
 					'</div>';
 				rankHtml+=sb;
-		}
+		}	
+         	}
+	
 		$("#rank_list").html(rankHtml);
+					
+					}, function() {
+
+					
+					});
+		
+		
           
           
           
