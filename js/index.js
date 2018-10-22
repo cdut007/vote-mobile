@@ -85,7 +85,14 @@ if($(j).attr('src') == 'https://www.qmwtp.com/'){
 							 dataFall = result.page.list;
 							  flagLoad = false;
                             //alert(result.art);
-
+                            var totalVote=0,totalScan=0;
+							for (var i = 0; i < dataFall.length; i++) {
+								 totalVote+=dataFall[i].voteCount;
+								 totalScan+=dataFall[i].scanCount;
+							}
+							$('#join_count').html(dataFall.length);
+							$('#total_vote').html(totalVote);
+							$('#total_scan').html(totalScan);
                                appendFall();
                                  $('.item-img').each(function(i,j){
   
