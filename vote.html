@@ -690,6 +690,7 @@
 	//vote list
 	get("/voteitem/list", {
 		activityId: activity.id,
+		playerId:playerId,
 		limit: 100,
 		order: 'DESC',
 		sidx: 'createTime'
