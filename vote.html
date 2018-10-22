@@ -93,14 +93,14 @@
 <div class="lfy_6touxiang" style="height:1.28rem;position: relative">
 <img src="img/avatar.png" class="lfy_6imghigh1">
 </div>
-<p class="lfy_6name2 ">1号-黄凤梅</p>
+<p class="lfy_6name2 " id="user_name">1号-用户</p>
 <div class="lfy_6icon_btn clearfix">
 <div class="lfy_every_bnt">
-<p class="lfy_6icon_txt  hp_number_color">1</p>
+<p class="lfy_6icon_txt  hp_number_color" id="rank_num">0</p>
 <p class="lfy_6icon_txt  juli" style="font-size:12px">排名</p>
 </div>
 <div class="lfy_every_bnt">
-<p class="lfy_6icon_txt hp_number_color">2</p>
+<p class="lfy_6icon_txt hp_number_color" id="vote_num">0</p>
 <p class="lfy_6icon_txt  juli" style="font-size:12px">票数</p>
 </div>
 <!--<div class="lfy_6every_bnt gift_none">
@@ -108,7 +108,7 @@
 <p class="lfy_6icon_txt juli" style="font-size:12px">礼物</p>
 </div>-->
 <div class="lfy_every_bnt">
-<p class="lfy_6icon_txt  hp_number_color">6</p>
+<p class="lfy_6icon_txt  hp_number_color" id="scan_num">0</p>
 <p class="lfy_6icon_txt  juli" style="font-size:12px">浏览量</p>
 </div>
 </div>
@@ -120,7 +120,7 @@
 <div class="load">
 </div>
 <p class="lfy_6xinxi_content">
-<span class="lfy_6xinxi_right " style="width: 92%;display: inline-block;">12</span>
+<span class="lfy_6xinxi_right " style="width: 92%;display: inline-block;" id="user_info"></span>
 </p>
 </div>
 <div class="lfy_6cansaizhe" id="video_div" style="display:none;">
@@ -185,7 +185,7 @@
 <img src="img/duihao_icon.png">
 </div>
 <p class="lfy_6gongxi ">投票成功</p>
-<p class="lfy_6gongxi1 ">1号 黄凤梅</p>
+<p class="lfy_6gongxi1 " id="user_vote_tips"></p>
 <div class="xq_player_number">+1票</div>
 </div>
 <div class="lfy_6foot_btn clearfix">
@@ -490,6 +490,8 @@
 
    $('#v_btn').click(function(){
          	$('.zhezhao2').show();
+         	var player = JSON.parse(localStorage.currentPlayer);
+         	$('#user_vote_tips').html(player.num+"号 "+player.username);
          	var html = $('.lfy_6chenggong_alert').html();
          	$('.lfy_6bangtou_alert').html(html);
          	  $('.lfy_6cha').click(function(){
@@ -504,8 +506,13 @@
 			console.log('get playerId=='+playerId);
          //vote list
         get("/participant/info/"+playerId, {}, function(data,body,info) {
-            		localStorage.currentPlayer = JSON.stringify(data.currentPlayer);
-					
+            		localStorage.currentPlayer = JSON.stringify(data.participant);
+            		var player = JSON.parse(localStorage.currentPlayer);
+					$('#vote_num').html(player.voteCount);
+					$('#scan_num').html(player.scanCount);
+					//$('#rank_num').html('1号 xxx');
+					$('#user_name').html(player.num+"号 "+player.username);
+					$('#user_info').html(player.content);
 					}, function() {
 //						mui.hideLoading();
 //						var btn = ["确定"]; //创建btn数组，其中btn[0]==“确定”
