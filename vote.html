@@ -1,591 +1,723 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html>
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
-<link rel="stylesheet" type="text/css" href="css/loading.default.css"/>
-<link rel="stylesheet" type="text/css" href="css/refresh.default.css"/>
-<script src="https://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
-<link rel="stylesheet" type="text/css" href="css/swiper.min.css"/>
-<link rel="stylesheet" type="text/css" href="css/phone.css">
-<link rel="stylesheet" type="text/css" href="css/style.css">
-<script src="js/xrev.js"></script>
-<link rel="stylesheet" type="text/css" href="css/slide-unlock.css">
-<script src="https://wx.gtimg.com/wxpay_h5/fingerprint2.min.1.5.1.js"/></script>
-<script>
- 		(function (doc, win) {
 
-			var docEl = doc.documentElement,
-				resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
-				recalc = function () {
-					var clientWidth = docEl.clientWidth;
-					if (!clientWidth) return;
-					if(clientWidth>=640){
-						docEl.style.fontSize = '100px';
-					}else{
-						docEl.style.fontSize = 100 * (clientWidth / 640) + 'px';
-					}
-				};
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<link rel="stylesheet" type="text/css" href="css/loading.default.css" />
+		<link rel="stylesheet" type="text/css" href="css/refresh.default.css" />
+		<script src="https://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+		<link rel="stylesheet" type="text/css" href="css/swiper.min.css" />
+		<link rel="stylesheet" type="text/css" href="css/phone.css">
+		<link rel="stylesheet" type="text/css" href="css/style.css">
+		<script src="js/xrev.js"></script>
+		<link rel="stylesheet" type="text/css" href="css/slide-unlock.css">
+		<script src="https://wx.gtimg.com/wxpay_h5/fingerprint2.min.1.5.1.js" /></script>
+		<script>
+			(function(doc, win) {
 
-				if (!doc.addEventListener) return;
+				var docEl = doc.documentElement,
+					resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+					recalc = function() {
+						var clientWidth = docEl.clientWidth;
+						if(!clientWidth) return;
+						if(clientWidth >= 640) {
+							docEl.style.fontSize = '100px';
+						} else {
+							docEl.style.fontSize = 100 * (clientWidth / 640) + 'px';
+						}
+					};
+
+				if(!doc.addEventListener) return;
 				win.addEventListener(resizeEvt, recalc, false);
 				doc.addEventListener('DOMContentLoaded', recalc, false);
-		})(document, window);
+			})(document, window);
 		</script>
-<script type="text/javascript">
-        function refreshimage() {
-            var cap = document.getElementById('vcode');
-            cap.src = "/hudong/fs0ttmwg/512bcc2d/authcode" + '?';
-        }
-    </script>
-<title></title>
-<style type="text/css">
-		#toupiao{width:100%;height:0.8rem;background-size:100% 100%;top:-1%;position:absolute}#liwu{width:100%;height:0.8rem;background-size:100% 100%;top:-1%;position:absolute}.lfy_6icon_img img{width:100%}.swiper-slide{width:50px}#all{width:100%;margin:0 auto;background:#ffffff}#all .t_num i{width:33px;height:47px;display:inline-block;background:url(img/number1.png) no-repeat;background-position:0 0}.tishi_chuang{width:70%;background:rgba(000,000,000,0.7);position:fixed;top:25%;left:15%;padding:10% 0;display:none;color:#fff;font-size:16px;text-align:center;border-radius:2px;z-index:999}.xiangqing_chuangjian img{width:100%}.tp_btn_bg{position:relative}.anniu{position:absolute;width:100%;height:100%;z-index:99;opacity:0}.hp_number_color{font-size:18px;}.zhezhao2{height: 100%;}.lfy_6foot_btn{bottom:-140px;border-top:1px solid #ecf0f5
-;}.swiper-slide{height:auto;}.swiper-wrapper{height:auto;}.renqi_name{height:20px;line-height:20px;}#Is_display{position: fixed;top: 35%;z-index: 30;width: 100%;}a{color:#333;}</style>
-<style>
-	#slider{
-		position: fixed;
-		top:20%;
-		left:0;
-		right:0;
-		bottom:0;
-		margin:auto;
-	
-		display:none;
-		z-index:999;
-	}
-	 #label>img{
-        width: 30px;
-        margin: 10px auto 0;
-    }
-    .opacy{
-        -webkit-animation: any 0.4s ;
-    }
-    @-webkit-keyframes any {
-        from {transform:rotate(0deg); opacity: 0; }
-        to {  transform:rotate(360deg);opacity: 1;}
-    }
-  
-    .shadow {
-          text-align: center;
-          background: -webkit-gradient(linear, left top, right top, color-stop(0, #4d4d4d), color-stop(.4, #4d4d4d), color-stop(.5, white), color-stop(.6, #4d4d4d), color-stop(1, #4d4d4d));
-          -webkit-background-clip: text;
-          -webkit-text-fill-color: transparent;
-          -webkit-animation: animate 1.7s infinite;
-    }
-    @-webkit-keyframes animate {
-          from {background-position: -100px;}
-          to {background-position: 100px;}
-    }
-    @keyframes animate {
-          from {background-position: -100px;}
-          to {background-position: 100px;}
-    }
-</style>
-</head>
-<body class="details">
-<div id="slider" style="margin:100px 36px;">
-<div id="slider_bg"></div>
-<input type="hidden" value="0" class="verify-lockable">
-<img src="img/success.png" style="display: none;"/>
-<span id="label" style="width: 58px;"><img src="img/slider.png" style="width:30px;margin-top:9px;"></span> <span class="shadow" id="labelTip"> &nbsp;向右滑动完成投票</span>
-</div>
-<div class="lfy_6touxiang" style="height:1.28rem;position: relative">
-<img src="img/avatar.png" class="lfy_6imghigh1">
-</div>
-<p class="lfy_6name2 " id="user_name">1号-用户</p>
-<div class="lfy_6icon_btn clearfix">
-<div class="lfy_every_bnt">
-<p class="lfy_6icon_txt  hp_number_color" id="rank_num">0</p>
-<p class="lfy_6icon_txt  juli" style="font-size:12px">排名</p>
-</div>
-<div class="lfy_every_bnt">
-<p class="lfy_6icon_txt hp_number_color" id="vote_num">0</p>
-<p class="lfy_6icon_txt  juli" style="font-size:12px">票数</p>
-</div>
-<!--<div class="lfy_6every_bnt gift_none">
+		<script type="text/javascript">
+			function refreshimage() {
+				var cap = document.getElementById('vcode');
+				cap.src = "/hudong/fs0ttmwg/512bcc2d/authcode" + '?';
+			}
+		</script>
+		<title></title>
+		<style type="text/css">
+			#toupiao {
+				width: 100%;
+				height: 0.8rem;
+				background-size: 100% 100%;
+				top: -1%;
+				position: absolute
+			}
+			
+			#liwu {
+				width: 100%;
+				height: 0.8rem;
+				background-size: 100% 100%;
+				top: -1%;
+				position: absolute
+			}
+			
+			.lfy_6icon_img img {
+				width: 100%
+			}
+			
+			.swiper-slide {
+				width: 50px
+			}
+			
+			#all {
+				width: 100%;
+				margin: 0 auto;
+				background: #ffffff
+			}
+			
+			#all .t_num i {
+				width: 33px;
+				height: 47px;
+				display: inline-block;
+				background: url(img/number1.png) no-repeat;
+				background-position: 0 0
+			}
+			
+			.tishi_chuang {
+				width: 70%;
+				background: rgba(000, 000, 000, 0.7);
+				position: fixed;
+				top: 25%;
+				left: 15%;
+				padding: 10% 0;
+				display: none;
+				color: #fff;
+				font-size: 16px;
+				text-align: center;
+				border-radius: 2px;
+				z-index: 999
+			}
+			
+			.xiangqing_chuangjian img {
+				width: 100%
+			}
+			
+			.tp_btn_bg {
+				position: relative
+			}
+			
+			.anniu {
+				position: absolute;
+				width: 100%;
+				height: 100%;
+				z-index: 99;
+				opacity: 0
+			}
+			
+			.hp_number_color {
+				font-size: 18px;
+			}
+			
+			.zhezhao2 {
+				height: 100%;
+			}
+			
+			.lfy_6foot_btn {
+				bottom: -140px;
+				border-top: 1px solid #ecf0f5;
+			}
+			
+			.swiper-slide {
+				height: auto;
+			}
+			
+			.swiper-wrapper {
+				height: auto;
+			}
+			
+			.renqi_name {
+				height: 20px;
+				line-height: 20px;
+			}
+			
+			#Is_display {
+				position: fixed;
+				top: 35%;
+				z-index: 30;
+				width: 100%;
+			}
+			
+			a {
+				color: #333;
+			}
+		</style>
+		<style>
+			#slider {
+				position: fixed;
+				top: 20%;
+				left: 0;
+				right: 0;
+				bottom: 0;
+				margin: auto;
+				display: none;
+				z-index: 999;
+			}
+			
+			#label>img {
+				width: 30px;
+				margin: 10px auto 0;
+			}
+			
+			.opacy {
+				-webkit-animation: any 0.4s;
+			}
+			
+			@-webkit-keyframes any {
+				from {
+					transform: rotate(0deg);
+					opacity: 0;
+				}
+				to {
+					transform: rotate(360deg);
+					opacity: 1;
+				}
+			}
+			
+			.shadow {
+				text-align: center;
+				background: -webkit-gradient(linear, left top, right top, color-stop(0, #4d4d4d), color-stop(.4, #4d4d4d), color-stop(.5, white), color-stop(.6, #4d4d4d), color-stop(1, #4d4d4d));
+				-webkit-background-clip: text;
+				-webkit-text-fill-color: transparent;
+				-webkit-animation: animate 1.7s infinite;
+			}
+			
+			@-webkit-keyframes animate {
+				from {
+					background-position: -100px;
+				}
+				to {
+					background-position: 100px;
+				}
+			}
+			
+			@keyframes animate {
+				from {
+					background-position: -100px;
+				}
+				to {
+					background-position: 100px;
+				}
+			}
+		</style>
+	</head>
+
+	<body class="details">
+		<div id="slider" style="margin:100px 36px;">
+			<div id="slider_bg"></div>
+			<input type="hidden" value="0" class="verify-lockable">
+			<img src="img/success.png" style="display: none;" />
+			<span id="label" style="width: 58px;"><img src="img/slider.png" style="width:30px;margin-top:9px;"></span> <span class="shadow" id="labelTip"> &nbsp;向右滑动完成投票</span>
+		</div>
+		<div class="lfy_6touxiang" style="height:1.28rem;position: relative">
+			<img src="img/avatar.png" class="lfy_6imghigh1">
+		</div>
+		<p class="lfy_6name2 " id="user_name">1号-用户</p>
+		<div class="lfy_6icon_btn clearfix">
+			<div class="lfy_every_bnt">
+				<p class="lfy_6icon_txt  hp_number_color" id="rank_num">0</p>
+				<p class="lfy_6icon_txt  juli" style="font-size:12px">排名</p>
+			</div>
+			<div class="lfy_every_bnt">
+				<p class="lfy_6icon_txt hp_number_color" id="vote_num">0</p>
+				<p class="lfy_6icon_txt  juli" style="font-size:12px">票数</p>
+			</div>
+			<!--<div class="lfy_6every_bnt gift_none">
 <p class="lfy_6icon_txt  hp_number_color">0</p>
 <p class="lfy_6icon_txt juli" style="font-size:12px">礼物</p>
 </div>-->
-<div class="lfy_every_bnt">
-<p class="lfy_6icon_txt  hp_number_color" id="scan_num">0</p>
-<p class="lfy_6icon_txt  juli" style="font-size:12px">浏览量</p>
-</div>
-</div>
-<div class="lfy_6cansaizhe">
-<div class="lfy_6cansai_name clearfix">
-<p class="lfy_6cansai_txt ">选手信息</p>
-</div>
-<div class="lfy_6line"></div>
-<div class="load">
-</div>
-<p class="lfy_6xinxi_content">
-<span class="lfy_6xinxi_right " style="width: 92%;display: inline-block;" id="user_info"></span>
-</p>
-</div>
-<div class="lfy_6cansaizhe" id="video_div" style="display:none;">
-<div class="lfy_6cansai_name clearfix">
-<p class="lfy_6cansai_txt ">选手视频</p>
-</div>
-<div class="lfy_6line"> </div>
-<div style="width:94%;margin:2% auto 0;height:200px;" id="video_play">
-</div>
-</div>
-<div class="details_renqi_box ">
-<p class="lfy_6cansai_txt ">票数贡献榜</p>
-<div class="lfy_6line" style="margin-bottom:10px;"></div>
-<div id="message">
-	 <div><div class="renqi_wu_box"><img class="baoxin" src="img/baoxin.png"></div><p class="like_player">喜欢我的人 在这里驻留</p></div>
-</div>
-<!--<a href="https://sslpay.335app.top/hudong/gift/fs0ttmwg?rand=fs0ttmwg&p_rand=94910568">
+			<div class="lfy_every_bnt">
+				<p class="lfy_6icon_txt  hp_number_color" id="scan_num">0</p>
+				<p class="lfy_6icon_txt  juli" style="font-size:12px">浏览量</p>
+			</div>
+		</div>
+		<div class="lfy_6cansaizhe">
+			<div class="lfy_6cansai_name clearfix">
+				<p class="lfy_6cansai_txt ">选手信息</p>
+			</div>
+			<div class="lfy_6line"></div>
+			<div class="load">
+			</div>
+			<p class="lfy_6xinxi_content">
+				<span class="lfy_6xinxi_right " style="width: 92%;display: inline-block;" id="user_info"></span>
+			</p>
+		</div>
+		<div class="lfy_6cansaizhe" id="video_div" style="display:none;">
+			<div class="lfy_6cansai_name clearfix">
+				<p class="lfy_6cansai_txt ">选手视频</p>
+			</div>
+			<div class="lfy_6line"> </div>
+			<div style="width:94%;margin:2% auto 0;height:200px;" id="video_play">
+			</div>
+		</div>
+		<div class="details_renqi_box ">
+			<p class="lfy_6cansai_txt ">票数贡献榜</p>
+			<div class="lfy_6line" style="margin-bottom:10px;"></div>
+			<div id="message">
+				<div>
+					<div class="renqi_wu_box"><img class="baoxin" src="img/baoxin.png"></div>
+					<p class="like_player">喜欢我的人 在这里驻留</p>
+				</div>
+			</div>
+			<!--<a href="https://sslpay.335app.top/hudong/gift/fs0ttmwg?rand=fs0ttmwg&p_rand=94910568">
 <div class="renqi_btn" id="taFor"> </div>
 </a>-->
-</div>
-<div class="lfy_6tab clearfix">
-<p id="txt" class="lfy_6toupiao ">投票记录</p>
-</div>
-<div class="lfy_6toupiao_box">
-<div class="ui-refresh_votes">
-<div class="data-list vote" id="vote_list">
+		</div>
+		<div class="lfy_6tab clearfix">
+			<p id="txt" class="lfy_6toupiao ">投票记录</p>
+		</div>
+		<div class="lfy_6toupiao_box">
+			<div class="ui-refresh_votes">
+				<div class="data-list vote" id="vote_list">
 
-</div>
-<div class="ui-refresh-down" id="a"></div>
-</div>
-</div>
-<div class="zhezhao2" style="display: none;">
-<div class="lfy_6bangtou_alert" style="display: block;">
-<div class="xiaolian_box">
-<img src="img/xiaolian.png">
-</div>
-<p class="lfy_6txt_bangtou ">每天只能投一票哦！</p>
-<div class="my_know">我知道了</div>
-</div>
-</div>
-<div class="renqi_alert" id="yzm">
-<img class="renqi_cha" src="img/cha.png">
-<p style="text-align:center;font-size:14px;color:#758697;margin-top:5%;">验证码</p>
-<img id="vcode" style="margin:5% 0 5% 22%;" src="" border="1" onClick="refreshimage()" title="看不清？点击更换另一个验证码。">
-<div style="width:40%;margin:0 auto;border:1px solid #eee;"><input style="width:100%;height:30px;font-size:14px;text-indent:10px;" type='text' placeholder='请输入验证码' id="yzm_text"></div>
-<p class="prompt" style="color:red;text-align:center;margin:2% 0;"></p>
-<div class="jia_gift_btn" id="yzm_sub">提交</div>
-</div>
-<div id="Is_display" style="display: none">
-<div id="__nc" style="margin-left:auto;margin-right:auto;width:80%;">
-<div id="renji">
-</div>
-</div>
-</div>
-<script>
-	</script>
-<div class="lfy_6chenggong_alert" style="display: none;">
-<div class="lfy_6cha">
-<img src="img/cha.png">
-</div>
-<div class="yuan_duihao">
-<img src="img/duihao_icon.png">
-</div>
-<p class="lfy_6gongxi ">投票成功</p>
-<p class="lfy_6gongxi1 " id="user_vote_tips"></p>
-<div class="xq_player_number">+1票</div>
-</div>
-<div class="lfy_6foot_btn clearfix">
-<a id="sy" href="main.html">
-<div class="lfy_6foot_cion_box">
-<div class="lfy_6icon_img1" style="width: 21%; margin-top: 8%;">
-<img src="img/shouye1.png">
-</div>
-<p class="lfy_6foot_txt ">首页</p>
-</div>
-</a>
-<div class="lfy_6foot_cion_box">
-<div class="lfy_6icon_img2">
-<div class="tp_btn_bg">
-<input class="anniu" type="button" name="" id="v_btn">
-<img src="img/tp_btn.png">
-</div>
-</div>
-</div>
-<a href="rank.html" id='songlw_url'>
-<div class="lfy_6foot_cion_box">
-<div class="lfy_6icon_img3" style="margin-top:8.5%;">
-<img src="img/qing_icon2.png" id='lfy_6icon_img327'>
-</div>
-<p class="lfy_6foot_txt " id="songlw">排行榜</p>
-</div>
-</a>
-<div class="lfy_6line1"></div>
-<div class="lfy_6line2"></div>
-</div>
-<div class="clearfix" style="width: 94%;margin:15px auto 35%;">
-</div>
-<div class="zhezhao2_new" style="display:none;">
-<input type="hidden" value="0" id="votesstatus">
-<input type="hidden" value="0" id="giftstatus">
-<div class="renqi_alert" id="renqi_alert" style="top:20%;">
-<img class="renqi_cha" src="img/cha.png" style="top:-20%;">
-<p style="font-size:16px;text-align:center;margin:8px 0;">长按二维码关注</p>
-<p style="font-size:14px;text-align:center;margin-bottom:8px;">在公众号中<span style="color:red;">投票</span></p>
-<div style="width:70%;margin:0 auto;">
-<img style="width:100%;" src="https://www.qmwtp.com/">
-</div>
-<p style="font-size:14px;text-align:center;margin:8px 0;"></p>
-<input type="hidden" id="is_show" value="0">
-</div>
-<script src="js/zepto.js" type="text/javascript" charset="utf-8"></script>
-<script src="js/gmu.js" type="text/javascript" charset="utf-8"></script>
-<script src="js/event.js" type="text/javascript" charset="utf-8"></script>
-<script src="js/widget.js" type="text/javascript" charset="utf-8"></script>
-<script src="js/refresh.js" type="text/javascript" charset="utf-8"></script>
-<script src="js/$lite.js" type="text/javascript" charset="utf-8"></script>
-<script type="text/javascript">
-
-	//参数
-	var list_hp = 1;
-	var  music = 1;
-//	var  lod2 = '/ActivityNew/Gift_info/gift_more?player_id=1';
-//	var  lod1 = '/hudong/fs0ttmwg/512bcc2d/votes_more/94910568';
-	var end_time = '1540609200';
-	var now_time = '1539700706';
-</script>
-
-<script src="js/mui.min.js"></script>
-<script src="js/common.js"></script>
-<script src="js/jquery-3.2.1.min.js"></script>
-<script src="js/imagesloaded.pkgd.min.js" type="text/javascript" charset="utf-8"></script>
-<script src="js/masonry.pkgd.min.js" type="text/javascript" charset="utf-8"></script>
-<script type="text/javascript" src="js/countDown.js"></script>
-<!--<script src="js/loading.js" type="text/javascript" charset="utf-8"></script>-->
-<script src="js/slideunlock.js"></script>
-<script type="text/javascript" src="js/swiper.min.js"></script>
-<script>
-
-	Window.onload = function (){
- 			}
-
-
-    $(function(){
-    	
-	var swiper = new Swiper('.swiper-container', {
-      slidesPerView:'auto',
-      spaceBetween: 10,
-      freeMode: true,
-	  observer:true,
-	   observeParents:true
-
-
-    });
-
-    })
-
-
-
-    $(function(){
-
-
-
-		var video_text ='';  //数据库中 iframe 字符串
-			var video_div = document.getElementById("video_div"); //
-
-			if(video_text.length>20){
-			  video_div.style.display="block";
-			
-            var str =video_text;
-            var str_url = str.substr(0,16);
-			
-			
-			  if(str_url == 'https://v.qq.com'){
-			  	
-				
-			  		var vid = str.substr(0,str.lastIndexOf('.'));
-			        video_Url_Id = vid.substr(vid.lastIndexOf('/')+1);
-			      
-			        aa(video_Url_Id);
-			  }else if(str_url == 'https://m.v.qq.c'){
-			  		video_Url_Id = str.match(/=(\S*)=/)[1];
-					aa(video_Url_Id);
-			  }else{
-			 
-			  	 document.getElementById("video_play").innerHTML = htmlDecodeByRegExp(video_text);
-			  }
-			 
-			}
-			$('iframe').css({'width':'100%','height':'100%'});
-    })
-
-		function htmlDecodeByRegExp (str){
-			  var s = "";
-			  if(str.length == 0) return "";
-			  s = str.replace(/&amp;/g,"&");
-			  s = s.replace(/&lt;/g,"<");
-			  s = s.replace(/&gt;/g,">");
-			  s = s.replace(/&nbsp;/g," ");
-			  s = s.replace(/&#39;/g,"\'");
-			  s = s.replace(/&quot;/g,"\"");
-			  return s;
-			}
-		     function aa(bbb){
-		       
-					document.getElementById("video_play").innerHTML = '<iframe class="video_iframe" style="z-index:1;" src="https://v.qq.com/iframe/player.html?vid='+bbb+'" allowfullscreen="false" frameborder="0"  width="100%" height="100%"></iframe>';    	
-			
-      }
-
+				</div>
+				<div class="ui-refresh-down" id="a"></div>
+			</div>
+		</div>
+		<div class="zhezhao2" style="display: none;">
+			<div class="lfy_6bangtou_alert" style="display: block;">
+				<div class="xiaolian_box">
+					<img src="img/xiaolian.png">
+				</div>
+				<p class="lfy_6txt_bangtou ">每天只能投一票哦！</p>
+				<div class="my_know">我知道了</div>
+			</div>
+		</div>
+		<div class="renqi_alert" id="yzm">
+			<img class="renqi_cha" src="img/cha.png">
+			<p style="text-align:center;font-size:14px;color:#758697;margin-top:5%;">验证码</p>
+			<img id="vcode" style="margin:5% 0 5% 22%;" src="" border="1" onClick="refreshimage()" title="看不清？点击更换另一个验证码。">
+			<div style="width:40%;margin:0 auto;border:1px solid #eee;"><input style="width:100%;height:30px;font-size:14px;text-indent:10px;" type='text' placeholder='请输入验证码' id="yzm_text"></div>
+			<p class="prompt" style="color:red;text-align:center;margin:2% 0;"></p>
+			<div class="jia_gift_btn" id="yzm_sub">提交</div>
+		</div>
+		<div id="Is_display" style="display: none">
+			<div id="__nc" style="margin-left:auto;margin-right:auto;width:80%;">
+				<div id="renji">
+				</div>
+			</div>
+		</div>
+		<script>
 		</script>
+		<div class="lfy_6chenggong_alert" style="display: none;">
+			<div class="lfy_6cha">
+				<img src="img/cha.png">
+			</div>
+			<div class="yuan_duihao">
+				<img src="img/duihao_icon.png">
+			</div>
+			<p class="lfy_6gongxi ">投票成功</p>
+			<p class="lfy_6gongxi1 " id="user_vote_tips"></p>
+			<div class="xq_player_number">+1票</div>
+		</div>
+		<div class="lfy_6foot_btn clearfix">
+			<a id="sy" href="main.html">
+				<div class="lfy_6foot_cion_box">
+					<div class="lfy_6icon_img1" style="width: 21%; margin-top: 8%;">
+						<img src="img/shouye1.png">
+					</div>
+					<p class="lfy_6foot_txt ">首页</p>
+				</div>
+			</a>
+			<div class="lfy_6foot_cion_box">
+				<div class="lfy_6icon_img2">
+					<div class="tp_btn_bg">
+						<input class="anniu" type="button" name="" id="v_btn">
+						<img src="img/tp_btn.png">
+					</div>
+				</div>
+			</div>
+			<a href="rank.html" id='songlw_url'>
+				<div class="lfy_6foot_cion_box">
+					<div class="lfy_6icon_img3" style="margin-top:8.5%;">
+						<img src="img/qing_icon2.png" id='lfy_6icon_img327'>
+					</div>
+					<p class="lfy_6foot_txt " id="songlw">排行榜</p>
+				</div>
+			</a>
+			<div class="lfy_6line1"></div>
+			<div class="lfy_6line2"></div>
+		</div>
+		<div class="clearfix" style="width: 94%;margin:15px auto 35%;">
+		</div>
+		<div class="zhezhao2_new" style="display:none;">
+			<input type="hidden" value="0" id="votesstatus">
+			<input type="hidden" value="0" id="giftstatus">
+			<div class="renqi_alert" id="renqi_alert" style="top:20%;">
+				<img class="renqi_cha" src="img/cha.png" style="top:-20%;">
+				<p style="font-size:16px;text-align:center;margin:8px 0;">长按二维码关注</p>
+				<p style="font-size:14px;text-align:center;margin-bottom:8px;">在公众号中<span style="color:red;">投票</span></p>
+				<div style="width:70%;margin:0 auto;">
+					<img style="width:100%;" src="https://www.qmwtp.com/">
+				</div>
+				<p style="font-size:14px;text-align:center;margin:8px 0;"></p>
+				<input type="hidden" id="is_show" value="0">
+			</div>
+			<script src="js/zepto.js" type="text/javascript" charset="utf-8"></script>
+			<script src="js/gmu.js" type="text/javascript" charset="utf-8"></script>
+			<script src="js/event.js" type="text/javascript" charset="utf-8"></script>
+			<script src="js/widget.js" type="text/javascript" charset="utf-8"></script>
+			<script src="js/refresh.js" type="text/javascript" charset="utf-8"></script>
+			<script src="js/$lite.js" type="text/javascript" charset="utf-8"></script>
+			<script type="text/javascript">
+				//参数
+				var list_hp = 1;
+				var music = 1;
+				//	var  lod2 = '/ActivityNew/Gift_info/gift_more?player_id=1';
+				//	var  lod1 = '/hudong/fs0ttmwg/512bcc2d/votes_more/94910568';
+				var end_time = '1540609200';
+				var now_time = '1539700706';
+			</script>
 
-<script type="text/javascript">
-		    var m={
-		        t : "VSsONFQyAH9SMQgrCTQNNAJsBzYOKVsqBCBXP19lBTADbg4sVDoFZwU%2BVjRUMAhiVjJcawAzBiFXdQZoUG1QZVVmDmlUZgA1Um0IbgltDWACZgc3DjlbfAQ7VyBfMgVkAzUOalR9BTIFMFY%2FVC4IZ1Y0XGQALwY2VzgGOFAmUHJVPg4%2BVDYAdFIxCCsJYA04AiUHcw5%2FWykEaFd%2FXyAFOANiDjdUNwUtBXBWb1RlCDtWYlxtADEGN1cvBnVQb1BwVXQOMFQmAGJSOwg3CToNfwI3B3QOP1suBCZXPV94BTIDIg5tVGIFMQVhVmRUYwhnVmFccwBoBmlXZQZkUHhQJlU0DihUNgBoUj0IPQlgDT8CMAdXDmFbDgQkVz1fXAU6A3kOD1QEBWIFcFZCVEMIAVYyXCkAMQZ9V0oGT1BSUHZVDQ4XVAYAIFInCCoJNg01AigHOg5uWzwEZVdgXzsFcwNgDjlUIQVkBWpWaVQ9CGZWM1x6AGMGc1dvBl5Qd1BpVT8OLFQ7ADtSYQhh",
-				tp:"4",
-				cue:"今天投票数已达上限！"
-		    }
-		    var o = document.getElementsByTagName("HEAD").item(0);
-		    var s = document.createElement("script");
-			var r = 'fs0ttmwg';
-			var pr = '94910568';
-//		    s.src="/corejs.php?VzAPKQU%2FVmFSbAZlB30BbQVlV29RflBjAGcCPVcpUDEPOAZpCisBdVU2BjEHNlp1U2VQIgM%2FUThUdgd0VHRXdFdjD3YFLVY9UjsGOAc3AXIFJVc%2FUTVQPwAxAjRXN1AwDy8GJApiAXdVfAY%2FByZaY1NvUD4DZVF%2FVGQHc1Q0V3NXLQ80BXVWN1J7BmIHYgFuBTRXNFEzUGMAMgIqV25Qbg9lBjUKdQEhVSAGPAc2Wn5TPQ%3D%3D";
-//		    o.appendChild(s);
-		</script>
-<script type="text/javascript">
+			<script src="js/mui.min.js"></script>
+			<script src="js/common.js"></script>
+			<script src="js/jquery-3.2.1.min.js"></script>
+			<script src="js/imagesloaded.pkgd.min.js" type="text/javascript" charset="utf-8"></script>
+			<script src="js/masonry.pkgd.min.js" type="text/javascript" charset="utf-8"></script>
+			<script type="text/javascript" src="js/countDown.js"></script>
+			<!--<script src="js/loading.js" type="text/javascript" charset="utf-8"></script>-->
+			<script src="js/slideunlock.js"></script>
+			<script type="text/javascript" src="js/swiper.min.js"></script>
+			<script>
+				Window.onload = function() {}
 
-      	$(function() {
+				$(function() {
 
+					var swiper = new Swiper('.swiper-container', {
+						slidesPerView: 'auto',
+						spaceBetween: 10,
+						freeMode: true,
+						observer: true,
+						observeParents: true
 
-		var songStr = " \u9001ta\u793c\u7269\u52a0\u7968";
-	
+					});
 
-				var songlw = document.getElementById("taFor");
-				var songlw1 = document.getElementById("tpcg");
-				var songlw_url = document.getElementById("songlw_url");
-				$('#taFor').html(unescape(songStr.replace(/\\u/g, '%u')));
-				// songlw.innerHTML = unescape(songStr.replace(/\\u/g, '%u'));
-				$('#tpcg').html(unescape(songStr.replace(/\\u/g, '%u')));
-				// songlw1.innerHTML = unescape(songStr.replace(/\\u/g, '%u'));
-				var platform = navigator.platform;
-				var t_platform = ["Win", "Mac", "win", "mac"];
-				
-
-
-			if(now_time>end_time){
-
-				var songlw = document.getElementById("songlw");
-				var songlw_url = document.getElementById("songlw_url");
-				var taFor = document.getElementById("taFor");
-				// taFor.style.display="none";
-				
-				var platform = navigator.platform;
-				var t_platform = ["Win", "Mac", "win", "mac"];
-			
-			} else {
-
-
-				var songlw = document.getElementById("songlw");
-				var songlw_url = document.getElementById("songlw_url");
-				var platform = navigator.platform;
-				var t_platform = ["Win", "Mac", "win", "mac"];
-				
-			}
-
-		
-		})
-
-		</script>
-<script type="text/javascript">
-		$(function(){
-			tihuan('.lfy_6name1');
-		})
-		function tihuan(obj){
-				$(obj).each(function(i,j){
-					var tihuan = $(j).html()
-					if(tihuan.indexOf("shua")>-1) {
-					　　$(j).html($(j).html().replace(/shua/g,"*"))
-					}
-					if( tihuan.indexOf("刷")>-1){
-					$(j).html($(j).html().replace(/刷/g,"*"))
-					}
-					if( tihuan.indexOf("票")>-1){
-					$(j).html($(j).html().replace(/票/g,"*"))
-					}
-					if( tihuan.indexOf("tou")>-1){
-				    $(j).html($(j).html().replace(/tou/g,"*"))
-				    }
-					if( tihuan.indexOf("投")>-1){
-					$(j).html($(j).html().replace(/投/g,"*"))
-					}
-					if( tihuan.indexOf("piao")>-1){
-
-					$(j).html($(j).html().replace(/piao/g,"*"))
-					}
-					if( tihuan.indexOf("ｓｕａｎ")>-1){
-					$(j).html($(j).html().replace(/ｓｕａｎ/g,"*"))
-					}
-					if( tihuan.indexOf("ｐｉａｏ")>-1){
-					$(j).html($(j).html().replace(/ｐｉａｏ/g,"*"))
-					}
 				})
-		}
 
-		setTimeout(function(){
-			$('.lfy_6foot_btn').animate({'bottom':'0'},350);
-		},1200)
-		</script>
-</body>
+				$(function() {
+
+					var video_text = ''; //数据库中 iframe 字符串
+					var video_div = document.getElementById("video_div"); //
+
+					if(video_text.length > 20) {
+						video_div.style.display = "block";
+
+						var str = video_text;
+						var str_url = str.substr(0, 16);
+
+						if(str_url == 'https://v.qq.com') {
+
+							var vid = str.substr(0, str.lastIndexOf('.'));
+							video_Url_Id = vid.substr(vid.lastIndexOf('/') + 1);
+
+							aa(video_Url_Id);
+						} else if(str_url == 'https://m.v.qq.c') {
+							video_Url_Id = str.match(/=(\S*)=/)[1];
+							aa(video_Url_Id);
+						} else {
+
+							document.getElementById("video_play").innerHTML = htmlDecodeByRegExp(video_text);
+						}
+
+					}
+					$('iframe').css({
+						'width': '100%',
+						'height': '100%'
+					});
+				})
+
+				function htmlDecodeByRegExp(str) {
+					var s = "";
+					if(str.length == 0) return "";
+					s = str.replace(/&amp;/g, "&");
+					s = s.replace(/&lt;/g, "<");
+					s = s.replace(/&gt;/g, ">");
+					s = s.replace(/&nbsp;/g, " ");
+					s = s.replace(/&#39;/g, "\'");
+					s = s.replace(/&quot;/g, "\"");
+					return s;
+				}
+
+				function aa(bbb) {
+
+					document.getElementById("video_play").innerHTML = '<iframe class="video_iframe" style="z-index:1;" src="https://v.qq.com/iframe/player.html?vid=' + bbb + '" allowfullscreen="false" frameborder="0"  width="100%" height="100%"></iframe>';
+
+				}
+			</script>
+
+			<script type="text/javascript">
+				var m = {
+					t: "VSsONFQyAH9SMQgrCTQNNAJsBzYOKVsqBCBXP19lBTADbg4sVDoFZwU%2BVjRUMAhiVjJcawAzBiFXdQZoUG1QZVVmDmlUZgA1Um0IbgltDWACZgc3DjlbfAQ7VyBfMgVkAzUOalR9BTIFMFY%2FVC4IZ1Y0XGQALwY2VzgGOFAmUHJVPg4%2BVDYAdFIxCCsJYA04AiUHcw5%2FWykEaFd%2FXyAFOANiDjdUNwUtBXBWb1RlCDtWYlxtADEGN1cvBnVQb1BwVXQOMFQmAGJSOwg3CToNfwI3B3QOP1suBCZXPV94BTIDIg5tVGIFMQVhVmRUYwhnVmFccwBoBmlXZQZkUHhQJlU0DihUNgBoUj0IPQlgDT8CMAdXDmFbDgQkVz1fXAU6A3kOD1QEBWIFcFZCVEMIAVYyXCkAMQZ9V0oGT1BSUHZVDQ4XVAYAIFInCCoJNg01AigHOg5uWzwEZVdgXzsFcwNgDjlUIQVkBWpWaVQ9CGZWM1x6AGMGc1dvBl5Qd1BpVT8OLFQ7ADtSYQhh",
+					tp: "4",
+					cue: "今天投票数已达上限！"
+				}
+				var o = document.getElementsByTagName("HEAD").item(0);
+				var s = document.createElement("script");
+				var r = 'fs0ttmwg';
+				var pr = '94910568';
+				//		    s.src="/corejs.php?VzAPKQU%2FVmFSbAZlB30BbQVlV29RflBjAGcCPVcpUDEPOAZpCisBdVU2BjEHNlp1U2VQIgM%2FUThUdgd0VHRXdFdjD3YFLVY9UjsGOAc3AXIFJVc%2FUTVQPwAxAjRXN1AwDy8GJApiAXdVfAY%2FByZaY1NvUD4DZVF%2FVGQHc1Q0V3NXLQ80BXVWN1J7BmIHYgFuBTRXNFEzUGMAMgIqV25Qbg9lBjUKdQEhVSAGPAc2Wn5TPQ%3D%3D";
+				//		    o.appendChild(s);
+			</script>
+			<script type="text/javascript">
+				$(function() {
+
+					var songStr = " \u9001ta\u793c\u7269\u52a0\u7968";
+
+					var songlw = document.getElementById("taFor");
+					var songlw1 = document.getElementById("tpcg");
+					var songlw_url = document.getElementById("songlw_url");
+					$('#taFor').html(unescape(songStr.replace(/\\u/g, '%u')));
+					// songlw.innerHTML = unescape(songStr.replace(/\\u/g, '%u'));
+					$('#tpcg').html(unescape(songStr.replace(/\\u/g, '%u')));
+					// songlw1.innerHTML = unescape(songStr.replace(/\\u/g, '%u'));
+					var platform = navigator.platform;
+					var t_platform = ["Win", "Mac", "win", "mac"];
+
+					if(now_time > end_time) {
+
+						var songlw = document.getElementById("songlw");
+						var songlw_url = document.getElementById("songlw_url");
+						var taFor = document.getElementById("taFor");
+						// taFor.style.display="none";
+
+						var platform = navigator.platform;
+						var t_platform = ["Win", "Mac", "win", "mac"];
+
+					} else {
+
+						var songlw = document.getElementById("songlw");
+						var songlw_url = document.getElementById("songlw_url");
+						var platform = navigator.platform;
+						var t_platform = ["Win", "Mac", "win", "mac"];
+
+					}
+
+				})
+			</script>
+			<script type="text/javascript">
+				$(function() {
+					tihuan('.lfy_6name1');
+				})
+
+				function tihuan(obj) {
+					$(obj).each(function(i, j) {
+						var tihuan = $(j).html()
+						if(tihuan.indexOf("shua") > -1) {　　
+							$(j).html($(j).html().replace(/shua/g, "*"))
+						}
+						if(tihuan.indexOf("刷") > -1) {
+							$(j).html($(j).html().replace(/刷/g, "*"))
+						}
+						if(tihuan.indexOf("票") > -1) {
+							$(j).html($(j).html().replace(/票/g, "*"))
+						}
+						if(tihuan.indexOf("tou") > -1) {
+							$(j).html($(j).html().replace(/tou/g, "*"))
+						}
+						if(tihuan.indexOf("投") > -1) {
+							$(j).html($(j).html().replace(/投/g, "*"))
+						}
+						if(tihuan.indexOf("piao") > -1) {
+
+							$(j).html($(j).html().replace(/piao/g, "*"))
+						}
+						if(tihuan.indexOf("ｓｕａｎ") > -1) {
+							$(j).html($(j).html().replace(/ｓｕａｎ/g, "*"))
+						}
+						if(tihuan.indexOf("ｐｉａｏ") > -1) {
+							$(j).html($(j).html().replace(/ｐｉａｏ/g, "*"))
+						}
+					})
+				}
+
+				setTimeout(function() {
+					$('.lfy_6foot_btn').animate({
+						'bottom': '0'
+					}, 350);
+				}, 1200)
+			</script>
+	</body>
+
 </html>
 <script>
 	var activity = JSON.parse(localStorage.currentActivity);
-		
-		  $(document).attr('title',activity.subject);
-		
-		var start_time=activity.begin;
-		var now_time=new Date().getTime();
-		var end_time=activity.end;
-	
-		var project_status = "1";
-		function tishi(start_time,now_time,end_time,project_status){
-			if(project_status=="2")
-	      	{
-	        	$('.zhezhao2').show();
-				$('.lfy_6txt_bangtou').html('活动已关闭');
-	        	return false;
-	      	}
 
-      		if(now_time<start_time){
-				$('.zhezhao2').show();
-				$('.lfy_6txt_bangtou').html('活动未开始');
-			}
+	$(document).attr('title', activity.subject);
 
-			if(now_time>end_time)
-			{
-								$('.zhezhao2').show();
-				$('.lfy_6txt_bangtou').html('活动已结束');
+	var start_time = activity.begin;
+	var now_time = new Date().getTime();
+	var end_time = activity.end;
 
-			}
+	var project_status = "1";
+
+	function tishi(start_time, now_time, end_time, project_status) {
+		if(project_status == "2") {
+			$('.zhezhao2').show();
+			$('.lfy_6txt_bangtou').html('活动已关闭');
+			return false;
+		}
+
+		if(now_time < start_time) {
+			$('.zhezhao2').show();
+			$('.lfy_6txt_bangtou').html('活动未开始');
+		}
+
+		if(now_time > end_time) {
+			$('.zhezhao2').show();
+			$('.lfy_6txt_bangtou').html('活动已结束');
 
 		}
-		tishi(start_time,now_time,end_time,project_status);
-		$('.my_know').click(function() {
-	 
-	    $('.zhezhao2').hide();
+
+	}
+	tishi(start_time, now_time, end_time, project_status);
+	$('.my_know').click(function() {
+
+		$('.zhezhao2').hide();
 	});
 
- // 遮罩跟弹窗
-                    $('.lfy_6zhezhao').height($(window).height());
-                   
+	// 遮罩跟弹窗
+	$('.lfy_6zhezhao').height($(window).height());
 
-                    $('.lfy_6bangtou_txt').click(function(){
-                        $('.lfy_6zhezhao').show();
-                        $('.fenxiang_img').show();
-                        $('.zhidao').show();
-                    })
-                    $('.zhidao').click(function(){
-                        $('.lfy_6zhezhao').hide();
-                        $('.fenxiang_img').hide();
-                        $('.zhidao').hide();
-                    })
-                    $('.guanbi_img').click(function(){
-                        $('.lfy_6bangtou_alert').hide();
-                        $('.lfy_6zhezhao').hide();
-                    })
-                  
-                     
+	$('.lfy_6bangtou_txt').click(function() {
+		$('.lfy_6zhezhao').show();
+		$('.fenxiang_img').show();
+		$('.zhidao').show();
+	})
+	$('.zhidao').click(function() {
+		$('.lfy_6zhezhao').hide();
+		$('.fenxiang_img').hide();
+		$('.zhidao').hide();
+	})
+	$('.guanbi_img').click(function() {
+		$('.lfy_6bangtou_alert').hide();
+		$('.lfy_6zhezhao').hide();
+	})
 
+	$('#v_btn').click(function() {
+		$('.zhezhao2').show();
+		var player = JSON.parse(localStorage.currentPlayer);
+		$('#user_vote_tips').html(player.num + "号 " + player.username);
+		var html = $('.lfy_6chenggong_alert').html();
+		$('.lfy_6bangtou_alert').html(html);
+		$('.lfy_6cha').click(function() {
+			$('.lfy_6zhezhao').hide();
+			$('.zhezhao2').hide();
+		})
+		//$('.lfy_6chenggong_alert').show();
+	})
 
-   $('#v_btn').click(function(){
-         	$('.zhezhao2').show();
-         	var player = JSON.parse(localStorage.currentPlayer);
-         	$('#user_vote_tips').html(player.num+"号 "+player.username);
-         	var html = $('.lfy_6chenggong_alert').html();
-         	$('.lfy_6bangtou_alert').html(html);
-         	  $('.lfy_6cha').click(function(){
-                        $('.lfy_6zhezhao').hide();
-         				$('.zhezhao2').hide();
-                    })
-           	//$('.lfy_6chenggong_alert').show();
-        })
+	var playerId = decodeURI(request("playerId"));
+	//localStorage.usersname = usersname;
+	console.log('get playerId==' + playerId);
 
-       var playerId = decodeURI(request("playerId"));
-			//localStorage.usersname = usersname;
-			console.log('get playerId=='+playerId);
-         //vote list
-        get("/participant/info/"+playerId, {}, function(data,body,info) {
-            		localStorage.currentPlayer = JSON.stringify(data.participant);
-            		var player = JSON.parse(localStorage.currentPlayer);
-					$('#vote_num').html(player.voteCount);
-					$('#scan_num').html(player.scanCount);
-					//$('#rank_num').html('1号 xxx');
-					$('#user_name').html(player.num+"号 "+player.username);
-					$('#user_info').html(player.content);
-					}, function() {
-//						mui.hideLoading();
-//						var btn = ["确定"]; //创建btn数组，其中btn[0]==“确定”
-//							mui.confirm("", '无效的链接', btn, function(e) {
-//								console.log('current press item=' + e.index)
-//			
-//							}, 'div');
-					
-					});
-        var voteHtml='';
-		for (var i = 3; i <20; i++) {
-			var index = i+1;
-			var sb= '<div class="lfy_6xuanshou_box">'+
-					'<div class="lfy_6xuanshou_box_content clearfix">'+
-					'<p class="lfy_6name1 ">james</p>'+
-					'<p class="lfy_6piao1 ">2018-10-16 09:04:35</p>'+
-					'<p class="jiapiao_number">+1</p>'+
-					'</div>'+
-					'</div>';
-				voteHtml+=sb;
+	get("/participant/list", {
+		activityId: activity.id,
+		limit: 100,
+		order: 'DESC',
+		sidx: 'voteCount'
+	}, function(data, body, info) {
+		var datalist = data.page.list;
+
+		if(datalist.length == 0) {
+			return;
 		}
-		$("#vote_list").html(voteHtml);
-          
+		for(var i = 0; i < datalist.length; i++) {
+			if(datalist[i].id == playerId) {
+				var rankNum = i + 1;
+				$('#rank_num').html(rankNum);
+				break;
+			}
+		}
 
-	</script>
+	}, function() {
+
+	});
+
+	//vote list
+	get("/participant/info/" + playerId, {}, function(data, body, info) {
+		localStorage.currentPlayer = JSON.stringify(data.participant);
+		var player = JSON.parse(localStorage.currentPlayer);
+		$('#vote_num').html(player.voteCount);
+		$('#scan_num').html(player.scanCount);
+		//$('#rank_num').html('1号 xxx');
+		$('#user_name').html(player.num + "号 " + player.username);
+		$('#user_info').html(player.content);
+	}, function() {
+		//						mui.hideLoading();
+		//						var btn = ["确定"]; //创建btn数组，其中btn[0]==“确定”
+		//							mui.confirm("", '无效的链接', btn, function(e) {
+		//								console.log('current press item=' + e.index)
+		//			
+		//							}, 'div');
+
+	});
+	var voteHtml = '';
+	for(var i = 3; i < 20; i++) {
+		var index = i + 1;
+		var sb = '<div class="lfy_6xuanshou_box">' +
+			'<div class="lfy_6xuanshou_box_content clearfix">' +
+			'<p class="lfy_6name1 ">james</p>' +
+			'<p class="lfy_6piao1 ">2018-10-16 09:04:35</p>' +
+			'<p class="jiapiao_number">+1</p>' +
+			'</div>' +
+			'</div>';
+		voteHtml += sb;
+	}
+	$("#vote_list").html(voteHtml);
+</script>
 <script type="text/javascript">
 	/*----fingerprint----*/
-			var fingerprint = "";
-			var fp=new Fingerprint2();
+	var fingerprint = "";
+	var fp = new Fingerprint2();
 
-			fp.get(function(result){
-			    fingerprint = result;
-			});
-			/*----fingerprint----*/ 
-	$(function () {
-        var slider = new SliderUnlock("#slider",{
-				successLabelTip : "验证中..."	
-			},function(){
-			  
-				var p = {"slider_index":slider.index,"status":slider.isOk,"timecount":slider.timecount,"xrev":xrevn,"xrevwh":xrevwh};
-                //var p = slider_index="+slider.index+"&status="+slider.isOk+"&timecount="+slider.timecount;
-			    $.ajax({
-			        url:is_yzm,
-			        data:{c_str: m.t,param:p,fingerprint:fingerprint},
-			        type:'post',
-			        dataType:'json',
-			        success:function(data)
-			        {
-						$("#labelTip").text("投票完成");
-			            document.querySelector('#labelTip').setAttribute('class','name');
-			            document.querySelector('#label>img').src ='img/success.png';
-			            document.querySelector('#label>img').setAttribute('class','opacy');
-			            //来个隐藏
-						setTimeout(function(){
-						
-							 get_data(data);
-							$('#slider').hide();
-							slider.reset();
-							slider.init();
-						},1000)
-			           
-			            
-					
-							 
-					   
-					   		
-						
-					
-			           
-			            	
-			        }
-			    })
-        	});
-        slider.init();
-    })
-	</script>
+	fp.get(function(result) {
+		fingerprint = result;
+	});
+	/*----fingerprint----*/
+	$(function() {
+		var slider = new SliderUnlock("#slider", {
+			successLabelTip: "验证中..."
+		}, function() {
+
+			var p = {
+				"slider_index": slider.index,
+				"status": slider.isOk,
+				"timecount": slider.timecount,
+				"xrev": xrevn,
+				"xrevwh": xrevwh
+			};
+			//var p = slider_index="+slider.index+"&status="+slider.isOk+"&timecount="+slider.timecount;
+			$.ajax({
+				url: is_yzm,
+				data: {
+					c_str: m.t,
+					param: p,
+					fingerprint: fingerprint
+				},
+				type: 'post',
+				dataType: 'json',
+				success: function(data) {
+					$("#labelTip").text("投票完成");
+					document.querySelector('#labelTip').setAttribute('class', 'name');
+					document.querySelector('#label>img').src = 'img/success.png';
+					document.querySelector('#label>img').setAttribute('class', 'opacy');
+					//来个隐藏
+					setTimeout(function() {
+
+						get_data(data);
+						$('#slider').hide();
+						slider.reset();
+						slider.init();
+					}, 1000)
+
+				}
+			})
+		});
+		slider.init();
+	})
+</script>
