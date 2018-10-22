@@ -45,6 +45,18 @@ if(!isDebug){
 					
 					});
 				}else{
+				//update key info
+				get("/"+key, {}, function(data,body,info) {
+            		localStorage.currentActivity = JSON.stringify(data.activity);
+            		localStorage.shortUrl = key+"";
+					
+				});
+				
+					}, function() {
+			
+					
+					});
+					
 					//ignore
 //						$.each($("a"),function(i,n){
 //					    var $href = $(this).attr("href");
