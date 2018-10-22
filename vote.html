@@ -638,7 +638,7 @@
 
 	});
 
-	//vote list
+	//vote info
 	get("/participant/info/" + playerId, {}, function(data, body, info) {
 		localStorage.currentPlayer = JSON.stringify(data.participant);
 		var player = JSON.parse(localStorage.currentPlayer);
@@ -646,29 +646,44 @@
 		$('#scan_num').html(player.scanCount);
 		//$('#rank_num').html('1号 xxx');
 		$('#user_name').html(player.num + "号 " + player.username);
-		$('#user_info').html(player.content);
+		$('#user_info').html(player.description);
 	}, function() {
-		//						mui.hideLoading();
-		//						var btn = ["确定"]; //创建btn数组，其中btn[0]==“确定”
-		//							mui.confirm("", '无效的链接', btn, function(e) {
-		//								console.log('current press item=' + e.index)
-		//			
-		//							}, 'div');
+	
+	});
+	
+	//vote list
+	get("/voteitem/list", {
+		activityId: activity.id,
+		limit: 100,
+		order: 'DESC',
+		sidx: 'createTime'
+	}, function(data, body, info) {
+		var datalist = data.page.list;
+
+		if(datalist.length == 0) {
+			return;
+		}
+		var voteHtml = '';
+		for(var i = 0; i < datalist.length; i++) {
+			var index = i + 1;
+			var voteItem = datalist[i];
+			 var createTime = formatFullDateTime(voteItem.createTime);
+			var sb = '<div class="lfy_6xuanshou_box">' +
+				'<div class="lfy_6xuanshou_box_content clearfix">' +
+				'<p class="lfy_6name1 ">'+voteItem.voterName+'</p>' +
+				'<p class="lfy_6piao1 ">'+createTime+'</p>' +
+				'<p class="jiapiao_number">+1</p>' +
+				'</div>' +
+				'</div>';
+			voteHtml += sb;
+		}
+	$("#vote_list").html(voteHtml);
+
+	}, function() {
 
 	});
-	var voteHtml = '';
-	for(var i = 3; i < 20; i++) {
-		var index = i + 1;
-		var sb = '<div class="lfy_6xuanshou_box">' +
-			'<div class="lfy_6xuanshou_box_content clearfix">' +
-			'<p class="lfy_6name1 ">james</p>' +
-			'<p class="lfy_6piao1 ">2018-10-16 09:04:35</p>' +
-			'<p class="jiapiao_number">+1</p>' +
-			'</div>' +
-			'</div>';
-		voteHtml += sb;
-	}
-	$("#vote_list").html(voteHtml);
+	
+
 </script>
 <script type="text/javascript">
 	/*----fingerprint----*/
