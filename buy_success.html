@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="initial-scale=1, width=device-width, maximum-scale=1, user-scalable=no">
+<title>支付成功</title>
+<link rel="stylesheet" type="text/css" href="css/phone.css"/>
+<link rel="stylesheet" type="text/css" href="css/style.css"/>
+<script src="js/jquery-3.2.1.min.js"></script>
+<style>
+	.pay_content{height: auto;padding-bottom:7%;margin-bottom: 2%;}.title_txtx{font-size: 14px;text-align: center;color: #758697;margin-top: 2%;}.txttxt{width: 92%;font-size: 12px;color: #bec2c5;margin: 2% auto;}.pay_bg_img{height: auto;}
+    .give_btn{border-radius: 100px;width: 56%;height: 36px;line-height: 36px;margin-bottom: 2%;}
+    .pay_txt_two{margin-top: 2%;font-size: 14px}
+    .pay_txt_three{font-size: 14px;}
+    .pay_txt_three span{font-size: 16px;}
+    .pay_txt_two span{font-size: 16px}
+	</style>
+<script>
+		(function (doc, win) {
+			var docEl = doc.documentElement,
+				resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+				recalc = function () {
+					var clientWidth = docEl.clientWidth;
+					if (!clientWidth) return;
+					if(clientWidth>=640){
+						docEl.style.fontSize = '100px';
+					}else{
+						docEl.style.fontSize = 100 * (clientWidth / 640) + 'px';
+					}
+				};
+
+				if (!doc.addEventListener) return;
+				win.addEventListener(resizeEvt, recalc, false);
+				doc.addEventListener('DOMContentLoaded', recalc, false);
+		})(document, window);
+		</script>
+
+</head>
+<body style="background: #ecf0f5;">
+<div class="pay_head">
+<img src="img/avatar.png">
+</div>
+<div class="pay_box">
+<div class="pay_content">
+<div class="pay_bg_img">
+<p class="pay_txt_one">1号-用户</p>
+<p class="pay_txt_three"><span style='font-size:20px;font-weight:bold;' id='ch'>天下无敌</span></p>
+<p class="pay_txt_two">增加 <span>20</span> 票</p>
+<p class="pay_txt_three">排行榜 第 <span>1</span> 名 <p class="pay_txt_three">领先下一名 <span>44</span> 票</p>
+</div>
+<p class="txttxt" style="margin-top:4%;">1.部分页面有缓存，所增加票数将在2分钟内更新。</p>
+<p class="txttxt">2.因支付回调极少情况会发生延迟，如购买礼物点数1小时内未增加，平台会对购买的点数进行双倍增加补偿。</p>
+<div class="pay_btn_box clearfix">
+<a href="vote.html"><div class="pay_btn_left">返回</div></a>
+<a href="rank.html"><div class="pay_btn_right">排行榜</div></a>
+</div>
+</div>
+</div>
+</body>
+</html>
+<script type="text/javascript">
+    function ceshi(asdsa){
+        if (juli < parseInt(myArray[myArray.length-1])*asdsa) {
+                erer = " "+myArray1[myArray1.length-1]+" X "+asdsa +" +"+myArray[i]*asdsa+" 票";
+                $('#zslw').html(erer);
+        }else{
+            // ceshi(asdsa+1);
+            $('.box2').hide();
+        }
+    }
+    var paiming = "1";
+    var shangsheng = "0";
+    var lingxian = "44";
+    var juli = "-44";
+        paiming = parseInt(paiming);
+        shangsheng = parseInt(shangsheng);
+        lingxian = parseInt(lingxian);
+        juli = parseInt(juli);
+    if (paiming == 1) {
+        if (lingxian >2000) {
+             $('#ch').html('高高在上');
+        }else if (lingxian >1000) {
+            $('#ch').html('遥遥领先');
+        }else if (lingxian >500) {
+            $('#ch').html('一骑绝尘');
+        }else{
+            $('#ch').html('大展宏图');
+        }
+    }else if (paiming == 2) {
+        $('#ch').html('名列前茅');
+    }else if (paiming == 3) {
+        $('#ch').html('赫赫有名');
+    }else{
+        if (shangsheng >= 5) {
+            $('#ch').html('鹏程万里');
+        }else if (shangsheng >= 4) {
+            $('#ch').html('飞黄腾达');
+        }else if (shangsheng >= 3) {
+            $('#ch').html('突飞猛进');
+        }else if (shangsheng >= 2) {
+            $('#ch').html('前程似锦');
+        }else if (shangsheng >= 1) {
+            $('#ch').html('步步高升');
+        }else {
+            $('#ch').html('');
+        }
+    }
+    var myArray=new Array();
+        myArray[0]="20";
+        myArray[1]="45";
+        myArray[2]="99";
+        myArray[3]="260";
+        myArray[4]="550";
+        myArray[5]="1200";
+        myArray[6]="3288";
+        myArray[7]="5688";
+        myArray[8]="8888";
+    var myArray1=new Array();
+        myArray1[0]="小星星";
+        myArray1[1]="棒棒糖";
+        myArray1[2]="打CALL";
+        myArray1[3]="么么哒";
+        myArray1[4]="666";
+        myArray1[5]="旋转木马";
+        myArray1[6]="炫酷跑车";
+        myArray1[7]="火箭";
+        myArray1[8]="梦幻城堡";
+    for (var i = 0; i < myArray.length; i++) {
+        if(i != myArray.length-1){
+            if (juli < parseInt(myArray[i])) {
+                erer = " "+myArray1[i]+" X 1" +" +"+myArray[i]+" 票";
+                $('#zslw').html(erer);
+                break;
+            }
+            // else if (juli < parseInt(myArray[i])*2) {
+            //     erer = " "+myArray1[i]+" X 2"+" +"+myArray[i]*2+" 票";
+            //     $('#zslw').html(erer);
+            //     break;
+            // }
+        }else{
+            ceshi(1);
+        }
+    }
+</script>
+<script>
+        function onBridgeReady() {
+
+            WeixinJSBridge.call('hideOptionMenu');
+			
+        }
+
+        if (typeof WeixinJSBridge == "undefined") {
+            if (document.addEventListener) {
+                document.addEventListener('WeixinJSBridgeReady', onBridgeReady, false);
+            } else if (document.attachEvent) {
+                document.attachEvent('WeixinJSBridgeReady', onBridgeReady);
+                document.attachEvent('onWeixinJSBridgeReady', onBridgeReady);
+            }
+        } else {
+            onBridgeReady();
+        }
+    </script>
