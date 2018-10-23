@@ -71,22 +71,12 @@
 <p class="lfy_3cansai_txt ">送礼物加票数<div id="qian" style="float:right;font-size:16px;color:#758697;margin-right: 3%;display:none">￥99.00</div></p>
 </div>
 <div class="lfy_3liwu_list clearfix ">
-<div class="lfy_3every_list " onclick='bad_gift_onclick(this,"5.00",20,5.00)'>
-<div class="lfy_3zhanshi">
-<p class="lfy_3mingcheng ">小星星</p>
-<div class="lfy_3liwu_box1">
-<img src="https://www.qmwtp.com/uploads/gift_pics/1518063503863985271.png">
-</div>
-</div>
-<div class="lfy_3anniu">
-<img src="img/btn.png">
-<p class="lfy_3liwu_number "><span style="position: relative;top: -0.01rem;color: #719336;">+</span>20点</p>
-</div>
-<input class="gift_id" type="hidden" value="137188">
+ 
+<div id='gift_item'>
+	
 </div>
 
 
-<input type="hidden" name="" value="">
 <div class="lfy_3jiahao" style="margin-bottom: 20%;">
 <div class="lfy_3left_txt">￥99.00</div>
 <div id="num" style="display:none;">×1</div>
@@ -257,6 +247,28 @@
 		    $('body').css('padding-bottom', '0px');
 		    $('.lfy_3zhifu').css('bottom', '0px');
 		}
+		
+		
+				var giftHtml="";
+		for (var i = 0; i <10; i++) {
+			var index = i+1;
+			var sb='<div class="lfy_3every_list " onclick=\'bad_gift_onclick(this,"5.00",20,5.00)\'>'+
+					'<div class="lfy_3zhanshi">'+
+					'<p class="lfy_3mingcheng ">小星星</p>'+
+					'<div class="lfy_3liwu_box1">'+
+					'<img src="https://www.qmwtp.com/uploads/gift_pics/1518063503863985271.png">'+
+					'</div>'+
+					'</div>'+
+					'<div class="lfy_3anniu">'+
+					'<img src="img/btn.png">'+
+					'<p class="lfy_3liwu_number "><span style="position: relative;top: -0.01rem;color: #719336;">+</span>20点</p>'+
+					'</div>'+
+					'</div>';
+				giftHtml+=sb;
+		}
+		$("#gift_item").html(giftHtml);
+		
+		
     </script>
 </body>
 </html>
