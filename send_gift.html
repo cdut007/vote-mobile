@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+<link rel="stylesheet" type="text/css" href="css/phone.css">
+<link rel="stylesheet" type="text/css" href="css/style.css">
+<script src="js/jquery-3.2.1.min.js"></script>
+<script src="https://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+<script>
+		(function (doc, win) {
+			var docEl = doc.documentElement,
+				resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+				recalc = function () {
+					var clientWidth = docEl.clientWidth;
+					if (!clientWidth) return;
+					if(clientWidth>=640){
+						docEl.style.fontSize = '100px';
+					}else{
+						docEl.style.fontSize = 100 * (clientWidth / 640) + 'px';
+					}
+				};
+
+				if (!doc.addEventListener) return;
+				win.addEventListener(resizeEvt, recalc, false);
+				doc.addEventListener('DOMContentLoaded', recalc, false);
+		})(document, window);
+		</script>
+<style type="text/css">
+		.lfy_3liwu_box1 img{width:100%}.lfy_3zhifu{position:fixed;left:0;bottom:0;margin:0;z-index:20;width: 100%;}
+		.hp_number_color{font-size:18px;}
+		.lfy_3jian{background:#fff;}
+		.lfy_3left_txt{font-size:16px;}
+		.lfy_3shuzi{font-size: 14px;color: #333;}
+		#num,#vote{color:#758697;float: left;font-size: 14px;line-height: 0.5rem;margin-left: 2%}
+		input:disabled, input[disabled]{
+			font-family: '微软雅黑';
+			color: #333;
+			-webkit-text-fill-color:#333;
+			-webkit-opacity:1;
+			opacity: 1;
+		}
+	</style>
+<title></title>
+</head>
+<body>
+<div class="lfy_3touxiang">
+<img src="img/avatar.png" class="lfy_3imghigh1">
+</div>
+<p class="lfy_3name2 ">1号-用户</p>
+<div class="lfy_3icon_btn clearfix">
+<div class="lfy_3every_bnt">
+<p class="lfy_3icon_txt hp_number_color ">1</p>
+<p class="lfy_3icon_txt  juli" style="font-size:12px;">排名</p>
+</div>
+<div class="lfy_3every_bnt">
+<p class="lfy_3icon_txt  hp_number_color">4</p>
+<p class="lfy_3icon_txt juli" style="font-size:12px;">票数</p>
+</div>
+<div class="lfy_3every_bnt">
+<p class="lfy_3icon_txt  hp_number_color">0</p>
+<p class="lfy_3icon_txt  juli" style="font-size:12px;">礼物</p>
+</div>
+<div class="lfy_3every_bnt">
+<p class="lfy_3icon_txt  hp_number_color">9</p>
+<p class="lfy_3icon_txt  juli" style="font-size:12px;">浏览量</p>
+</div>
+</div>
+<div class="lfy_3cansaizhe">
+<div class="lfy_3cansai_name clearfix">
+<p class="lfy_3cansai_txt ">送礼物加票数<div id="qian" style="float:right;font-size:16px;color:#758697;margin-right: 3%;display:none">￥99.00</div></p>
+</div>
+<div class="lfy_3liwu_list clearfix ">
+<div class="lfy_3every_list " onclick='bad_gift_onclick(this,"5.00",20,5.00)'>
+<div class="lfy_3zhanshi">
+<p class="lfy_3mingcheng ">小星星</p>
+<div class="lfy_3liwu_box1">
+<img src="https://www.qmwtp.com/uploads/gift_pics/1518063503863985271.png">
+</div>
+</div>
+<div class="lfy_3anniu">
+<img src="img/btn.png">
+<p class="lfy_3liwu_number "><span style="position: relative;top: -0.01rem;color: #719336;">+</span>20点</p>
+</div>
+<input class="gift_id" type="hidden" value="137188">
+</div>
+
+
+<input type="hidden" name="" value="">
+<div class="lfy_3jiahao" style="margin-bottom: 20%;">
+<div class="lfy_3left_txt">￥99.00</div>
+<div id="num" style="display:none;">×1</div>
+<div id="vote">+550点</div>
+<div class="lfy_3jia_box">
+<div class="lfy_3jian font30">-</div>
+<input id="gift_num" class="lfy_3shuzi font14" value="1" disabled="disabled">
+<div class="lfy_3jia font24">
+<img src="img/jiahao.png">
+</div>
+</div>
+<input type="hidden" value="550" id="now_gift_votes">
+<input type="hidden" value="99.00" id="gift_money">
+</div>
+<input type="hidden" value="94910568" id="player_id">
+<div class="lfy_3zhifu" onclick="wxpay()">
+<p class="lfy_3zhifu_txt ">立即送出</p>
+</div>
+</div>
+</div>
+<input type="hidden" value="" id="jsApiParameters">
+<input type="hidden" value="" id="success_url">
+<div class="lfy_3tishichuang font14"></div>
+<script type="text/javascript">
+		function wxpay()
+		{
+
+			var gift_id = $('.abc').find('.gift_id').val();
+			var gift_name= $('.abc').find('.lfy_3zhanshi').children('.lfy_3mingcheng').html();
+			var gift_num = $('#gift_num').val();
+			var player_id = $('#player_id').val();
+
+			$.ajax({
+				url:"/pay/94910568",
+				data:{gift_id:gift_id,gift_name:gift_name,gift_num:gift_num},
+				type:'get',
+				dateType:'json',
+				async: false,
+				success:function(res){
+					var data = JSON.parse(res);
+					if(data.code==400)
+					{
+						$(".lfy_3tishichuang").stop(true).fadeIn(500).delay(1000).fadeOut(500);
+						$(".lfy_3tishichuang").html(data.info);
+					}else{
+						if (typeof WeixinJSBridge == "undefined"){
+							if( document.addEventListener ){
+								document.addEventListener('WeixinJSBridgeReady', jsApiCall, false);
+							}else if (document.attachEvent){
+								document.attachEvent('WeixinJSBridgeReady', jsApiCall);
+								document.attachEvent('onWeixinJSBridgeReady', jsApiCall);
+							}
+						}else{
+							WeixinJSBridge.invoke(
+									'getBrandWCPayRequest',
+									$.parseJSON(data.jsApiParameters),
+									function(res){
+									/*WeixinJSBridge.log(res.err_msg);
+										 alert(res.err_code+res.err_desc+res.err_msg);*/
+										if(res.err_msg == 'get_brand_wcpay_request:ok')
+										{
+											window.location.href=data.success_url;
+										}else if (res.err_msg == 'get_brand_wcpay_request:cancel'){
+											WeixinJSBridge.log('用户支付过程取消')
+										}else if (res.err_msg =='get_brand_wcpay_request:fail'){
+											WeixinJSBridge.log('支付失败')
+										}
+									}
+							);
+						}
+					}
+				}
+			})
+		}
+
+				function bad_gift_onclick(e,gift_name,gift_votes,gift_money)
+				{
+
+					$('.lfy_3every_list').css('border','solid #f6f8fa 1px')
+					$('.lfy_3every_list').css('backgroundColor','#fff ')
+					$('.lfy_3every_list').removeClass('abc');
+					e.style.border="solid #b3e759 1px ";
+					e.style.backgroundColor="#eee";
+					e.className='lfy_3every_list abc';
+					$('#gift_num').val(1);
+											var votes = gift_votes+"点";
+										$("#now_gift_votes").val(gift_votes);
+					$('.lfy_3left_txt').html(gift_name);
+					$("#num").html("×1");
+					$("#vote").html("+"+votes);
+					$("#gift_money").val(gift_money);
+
+					$("#qian").html('￥'+gift_money.toFixed(2));
+					$('.lfy_3left_txt').html('￥'+gift_money.toFixed(2));
+				}
+
+				$('.lfy_3jia').click(function(){
+					shuzi=$('.lfy_3shuzi').val()
+					var now_gift_votes = $("#now_gift_votes").val();
+					shuzi++;
+					var votes = shuzi*now_gift_votes;
+					var get_votes = 4;
+					var gift_money = $("#gift_money").val();
+											$('#vote').html('+'+votes+'点');
+										$("#num").html('×'+shuzi);
+					$('.lfy_3shuzi').val(shuzi);
+					var total_money = gift_money*shuzi;
+					$('#qian').html('￥'+total_money.toFixed(2));
+					$('.lfy_3left_txt').html('￥'+total_money.toFixed(2));
+
+				})
+
+				$('.lfy_3jian').click(function(){
+					shuzi=$('.lfy_3shuzi').val()
+					var now_gift_votes = $("#now_gift_votes").val();
+					shuzi--;
+					if (shuzi<1) {
+						shuzi = 1;
+					};
+					var votes = shuzi*now_gift_votes;
+					var get_votes = 4;
+					var gift_money = $("#gift_money").val();
+						$('.lfy_3shuzi').val(shuzi);
+					 if ( $('.lfy_3shuzi').val()<1) {
+					 	$('.lfy_3shuzi').val(1)
+					 }else{
+					 						$('#vote').html('+'+votes+'点');
+											$("#num").html('×'+shuzi);
+					}
+					var total_money = gift_money*shuzi;
+					$('#qian').html('￥'+total_money.toFixed(2));
+					$('.lfy_3left_txt').html('￥'+total_money.toFixed(2));
+				})
+			$('.lfy_3shuzi').change(function(){
+				if (isNaN($('.lfy_3shuzi').val())) {
+					$(".lfy_3tishichuang").stop(true).fadeIn(500).delay(1000).fadeOut(500);
+					$(".lfy_3tishichuang").html('只能输入数字');
+					$('.lfy_3shuzi').val('1');
+				}
+			})
+			</script>
+
+<script>
+        function onBridgeReady() {
+            WeixinJSBridge.call('hideOptionMenu');
+        }
+
+        if (typeof WeixinJSBridge == "undefined") {
+            if (document.addEventListener) {
+                document.addEventListener('WeixinJSBridgeReady', onBridgeReady, false);
+            } else if (document.attachEvent) {
+                document.attachEvent('WeixinJSBridgeReady', onBridgeReady);
+                document.attachEvent('onWeixinJSBridgeReady', onBridgeReady);
+            }
+        } else {
+            onBridgeReady();
+        }
+    </script>
+<script type="text/javascript">
+    	//判断iphoneX
+		function isIphoneX() {
+		    return /iphone/gi.test(navigator.userAgent) && (screen.height == 812 && screen.width == 375)
+		}
+		if (isIphoneX()) {
+		    $('body').css('padding-bottom', '30px');
+		    $('.lfy_3zhifu').css('bottom', '30px');
+		} else {
+		    $('body').css('padding-bottom', '0px');
+		    $('.lfy_3zhifu').css('bottom', '0px');
+		}
+    </script>
+</body>
+</html>
