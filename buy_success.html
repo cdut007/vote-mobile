@@ -43,22 +43,32 @@
 <div class="pay_box">
 <div class="pay_content">
 <div class="pay_bg_img">
-<p class="pay_txt_one">1号-用户</p>
+<p class="pay_txt_one" id="user_name">1号-用户</p>
 <p class="pay_txt_three"><span style='font-size:20px;font-weight:bold;' id='ch'>天下无敌</span></p>
-<p class="pay_txt_two">增加 <span>20</span> 票</p>
-<p class="pay_txt_three">排行榜 第 <span>1</span> 名 <p class="pay_txt_three">领先下一名 <span>44</span> 票</p>
+<p class="pay_txt_two">增加 <span id="buy_vote_count">0</span> 票</p>
+<!--<p class="pay_txt_three">排行榜 第 <span>1</span> 名 <p class="pay_txt_three">领先下一名 <span>44</span> 票</p>-->
 </div>
 <p class="txttxt" style="margin-top:4%;">1.部分页面有缓存，所增加票数将在2分钟内更新。</p>
 <p class="txttxt">2.因支付回调极少情况会发生延迟，如购买礼物点数1小时内未增加，平台会对购买的点数进行双倍增加补偿。</p>
 <div class="pay_btn_box clearfix">
-<a href="vote.html"><div class="pay_btn_left">返回</div></a>
-<a href="rank.html"><div class="pay_btn_right">排行榜</div></a>
+<a href="vote.html" id="vote"><div class="pay_btn_left">返回</div></a>
+<a href="rank.html" id="rank"><div class="pay_btn_right">排行榜</div></a>
 </div>
 </div>
 </div>
 </body>
 </html>
+
+<script src="js/mui.min.js"></script>
+<script type="text/javascript" src="js/common.js"></script>
 <script type="text/javascript">
+	 $('#vote').attr('href','vote.html?key='+localStorage.shortUrl);
+	 $('#rank').attr('href','rank.html?key='+localStorage.shortUrl);
+	var player = JSON.parse(localStorage.currentPlayer);
+	$('#user_name').html(player.num + "号 " + player.username);
+	$('#buy_vote_count').html(decodeURI(request("buy_vote_count")));
+	
+	
     function ceshi(asdsa){
         if (juli < parseInt(myArray[myArray.length-1])*asdsa) {
                 erer = " "+myArray1[myArray1.length-1]+" X "+asdsa +" +"+myArray[i]*asdsa+" 票";

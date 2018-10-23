@@ -3,9 +3,12 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+<!--标准mui.css-->
+		<link rel="stylesheet" href="css/mui.min.css">
+<script src="js/jquery-3.2.1.min.js"></script>
 <link rel="stylesheet" type="text/css" href="css/phone.css">
 <link rel="stylesheet" type="text/css" href="css/style.css">
-<script src="js/jquery-3.2.1.min.js"></script>
+
 <script src="https://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
 <script>
 		(function (doc, win) {
@@ -47,22 +50,22 @@
 <div class="lfy_3touxiang">
 <img src="img/avatar.png" class="lfy_3imghigh1">
 </div>
-<p class="lfy_3name2 ">1号-用户</p>
+<p class="lfy_3name2 " id="user_name">1号-用户</p>
 <div class="lfy_3icon_btn clearfix">
 <div class="lfy_3every_bnt">
-<p class="lfy_3icon_txt hp_number_color ">1</p>
+<p class="lfy_3icon_txt hp_number_color " id="rank_num">0</p>
 <p class="lfy_3icon_txt  juli" style="font-size:12px;">排名</p>
 </div>
 <div class="lfy_3every_bnt">
-<p class="lfy_3icon_txt  hp_number_color">4</p>
+<p class="lfy_3icon_txt  hp_number_color" id="vote_num">0</p>
 <p class="lfy_3icon_txt juli" style="font-size:12px;">票数</p>
 </div>
 <div class="lfy_3every_bnt">
-<p class="lfy_3icon_txt  hp_number_color">0</p>
+<p class="lfy_3icon_txt  hp_number_color" id="gift_num">0</p>
 <p class="lfy_3icon_txt  juli" style="font-size:12px;">礼物</p>
 </div>
 <div class="lfy_3every_bnt">
-<p class="lfy_3icon_txt  hp_number_color">9</p>
+<p class="lfy_3icon_txt  hp_number_color" id="scan_num">0</p>
 <p class="lfy_3icon_txt  juli" style="font-size:12px;">浏览量</p>
 </div>
 </div>
@@ -78,9 +81,9 @@
 
 
 <div class="lfy_3jiahao" style="margin-bottom: 20%;">
-<div class="lfy_3left_txt">￥99.00</div>
+<div class="lfy_3left_txt">￥00.00</div>
 <div id="num" style="display:none;">×1</div>
-<div id="vote">+550点</div>
+<div id="vote">+0点</div>
 <div class="lfy_3jia_box">
 <div class="lfy_3jian font30">-</div>
 <input id="gift_num" class="lfy_3shuzi font14" value="1" disabled="disabled">
@@ -88,10 +91,10 @@
 <img src="img/jiahao.png">
 </div>
 </div>
-<input type="hidden" value="550" id="now_gift_votes">
-<input type="hidden" value="99.00" id="gift_money">
+<input type="hidden" value="0" id="now_gift_votes">
+<input type="hidden" value="00.00" id="gift_money">
 </div>
-<input type="hidden" value="94910568" id="player_id">
+
 <div class="lfy_3zhifu" onclick="wxpay()">
 <p class="lfy_3zhifu_txt ">立即送出</p>
 </div>
@@ -100,61 +103,54 @@
 <input type="hidden" value="" id="jsApiParameters">
 <input type="hidden" value="" id="success_url">
 <div class="lfy_3tishichuang font14"></div>
+
+<script src="js/mui.min.js"></script>
+<script type="text/javascript" src="js/common.js"></script>
 <script type="text/javascript">
+	var choose_gift_id;
 		function wxpay()
 		{
 
-			var gift_id = $('.abc').find('.gift_id').val();
+			
 			var gift_name= $('.abc').find('.lfy_3zhanshi').children('.lfy_3mingcheng').html();
 			var gift_num = $('#gift_num').val();
 			var player_id = $('#player_id').val();
-
-			$.ajax({
-				url:"/pay/94910568",
-				data:{gift_id:gift_id,gift_name:gift_name,gift_num:gift_num},
-				type:'get',
-				dateType:'json',
-				async: false,
-				success:function(res){
-					var data = JSON.parse(res);
-					if(data.code==400)
-					{
-						$(".lfy_3tishichuang").stop(true).fadeIn(500).delay(1000).fadeOut(500);
-						$(".lfy_3tishichuang").html(data.info);
-					}else{
-						if (typeof WeixinJSBridge == "undefined"){
-							if( document.addEventListener ){
-								document.addEventListener('WeixinJSBridgeReady', jsApiCall, false);
-							}else if (document.attachEvent){
-								document.attachEvent('WeixinJSBridgeReady', jsApiCall);
-								document.attachEvent('onWeixinJSBridgeReady', jsApiCall);
-							}
-						}else{
-							WeixinJSBridge.invoke(
-									'getBrandWCPayRequest',
-									$.parseJSON(data.jsApiParameters),
-									function(res){
-									/*WeixinJSBridge.log(res.err_msg);
-										 alert(res.err_code+res.err_desc+res.err_msg);*/
-										if(res.err_msg == 'get_brand_wcpay_request:ok')
-										{
-											window.location.href=data.success_url;
-										}else if (res.err_msg == 'get_brand_wcpay_request:cancel'){
-											WeixinJSBridge.log('用户支付过程取消')
-										}else if (res.err_msg =='get_brand_wcpay_request:fail'){
-											WeixinJSBridge.log('支付失败')
-										}
-									}
-							);
-						}
-					}
-				}
-			})
+			
+			var shuzi=$('.lfy_3shuzi').val();
+			var now_gift_votes = $("#now_gift_votes").val();
+			var votes = shuzi * now_gift_votes;
+			
+			if(votes ==0){
+				var btn = ["确定"]; //创建btn数组，其中btn[0]==“确定”
+							mui.confirm("", '请选择礼物', btn, function(e) {
+								console.log('current press item=' + e.index)
+			
+							}, 'div');
+				return;
+			}
+				var player = JSON.parse(localStorage.currentPlayer);
+				var activity = JSON.parse(localStorage.currentActivity);
+					
+				post("/giftitem/save", {
+					activityId: activity.id,
+					playerId:player.id,
+					giftId:choose_gift_id,
+					voteCount:votes,
+					giftNum:shuzi
+				}, function(data, body, info) {
+					 window.location.href='buy_success.html?key='+localStorage.shortUrl+'&buy_vote_count='+votes;
+			
+				}, function() {
+			
+				});
+           
+           
+		
 		}
 
-				function bad_gift_onclick(e,gift_name,gift_votes,gift_money)
+				function bad_gift_onclick(e,gift_id,gift_name,gift_votes,gift_money)
 				{
-
+					choose_gift_id = gift_id;
 					$('.lfy_3every_list').css('border','solid #f6f8fa 1px')
 					$('.lfy_3every_list').css('backgroundColor','#fff ')
 					$('.lfy_3every_list').removeClass('abc');
@@ -236,6 +232,13 @@
         }
     </script>
 <script type="text/javascript">
+	
+	var player = JSON.parse(localStorage.currentPlayer);
+		$('#vote_num').html(player.voteCount);
+		$('#scan_num').html(player.scanCount);
+		$('#gift_num').html(player.giftCount);
+		$('#user_name').html(player.num + "号 " + player.username);
+	
     	//判断iphoneX
 		function isIphoneX() {
 		    return /iphone/gi.test(navigator.userAgent) && (screen.height == 812 && screen.width == 375)
@@ -248,25 +251,40 @@
 		    $('.lfy_3zhifu').css('bottom', '0px');
 		}
 		
-		
-				var giftHtml="";
-		for (var i = 0; i <10; i++) {
+		get("/giftinfo/list", {
+		limit: 100,
+		order: 'ASC',
+		sidx: 'price'
+	}, function(data, body, info) {
+		var datalist = data.page.list;
+
+		if(datalist.length == 0) {
+			return;
+		}
+		var giftHtml="";
+		for(var i = 0; i < datalist.length; i++) {
 			var index = i+1;
-			var sb='<div class="lfy_3every_list " onclick=\'bad_gift_onclick(this,"5.00",20,5.00)\'>'+
+		
+			var sb='<div class="lfy_3every_list " onclick=\'bad_gift_onclick(this,'+datalist[i].id+',"'+datalist[i].price+'",'+datalist[i].voteCount+','+datalist[i].price+')\'>'+
 					'<div class="lfy_3zhanshi">'+
-					'<p class="lfy_3mingcheng ">小星星</p>'+
+					'<p class="lfy_3mingcheng ">'+datalist[i].name+'</p>'+
 					'<div class="lfy_3liwu_box1">'+
 					'<img src="https://www.qmwtp.com/uploads/gift_pics/1518063503863985271.png">'+
 					'</div>'+
 					'</div>'+
 					'<div class="lfy_3anniu">'+
 					'<img src="img/btn.png">'+
-					'<p class="lfy_3liwu_number "><span style="position: relative;top: -0.01rem;color: #719336;">+</span>20点</p>'+
+					'<p class="lfy_3liwu_number "><span style="position: relative;top: -0.01rem;color: #719336;">+</span>'+datalist[i].voteCount+'点</p>'+
 					'</div>'+
 					'</div>';
 				giftHtml+=sb;
 		}
 		$("#gift_item").html(giftHtml);
+
+	}, function() {
+
+	});
+
 		
 		
     </script>

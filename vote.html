@@ -219,19 +219,19 @@
 		</div>
 		<p class="lfy_6name2 " id="user_name">1号-用户</p>
 		<div class="lfy_6icon_btn clearfix">
-			<div class="lfy_every_bnt">
+			<div class="lfy_6every_bnt">
 				<p class="lfy_6icon_txt  hp_number_color" id="rank_num">0</p>
 				<p class="lfy_6icon_txt  juli" style="font-size:12px">排名</p>
 			</div>
-			<div class="lfy_every_bnt">
+			<div class="lfy_6every_bnt">
 				<p class="lfy_6icon_txt hp_number_color" id="vote_num">0</p>
 				<p class="lfy_6icon_txt  juli" style="font-size:12px">票数</p>
 			</div>
-			<!--<div class="lfy_6every_bnt gift_none">
-<p class="lfy_6icon_txt  hp_number_color">0</p>
-<p class="lfy_6icon_txt juli" style="font-size:12px">礼物</p>
-</div>-->
-			<div class="lfy_every_bnt">
+			<div class="lfy_6every_bnt gift_none">
+			<p class="lfy_6icon_txt  hp_number_color" id="gift_num">0</p>
+			<p class="lfy_6icon_txt juli" style="font-size:12px">礼物</p>
+			</div>
+			<div class="lfy_6every_bnt">
 				<p class="lfy_6icon_txt  hp_number_color" id="scan_num">0</p>
 				<p class="lfy_6icon_txt  juli" style="font-size:12px">浏览量</p>
 			</div>
@@ -332,12 +332,12 @@
 					</div>
 				</div>
 			</div>
-			<a href="rank.html" id='songlw_url'>
+			<a href="send_gift.html" id='songlw_url'>
 				<div class="lfy_6foot_cion_box">
 					<div class="lfy_6icon_img3" style="margin-top:8.5%;">
-						<img src="img/qing_icon2.png" id='lfy_6icon_img327'>
+						<img src="img/tabbar_icon2.png" id='lfy_6icon_img327'>
 					</div>
-					<p class="lfy_6foot_txt " id="songlw">排行榜</p>
+					<p class="lfy_6foot_txt " id="songlw">送礼物</p>
 				</div>
 			</a>
 			<div class="lfy_6line1"></div>
@@ -466,7 +466,7 @@
 			<script type="text/javascript">
 				$(function() {
 					
-					 $('#songlw_url').attr('href','rank.html?key='+localStorage.shortUrl);
+					 $('#songlw_url').attr('href','send_gift.html?key='+localStorage.shortUrl);
 					  $('#sy').attr('href','main.html?key='+localStorage.shortUrl);
 
 					var songStr = " \u9001ta\u793c\u7269\u52a0\u7968";
@@ -622,11 +622,12 @@
 	$('#v_btn').click(function() {
 		
 		var player = JSON.parse(localStorage.currentPlayer);
+		var name =returnCitySN["cip"]+"-"+returnCitySN["cname"] 
 		post("/voteitem/save", {
 		activityId: activity.id,
 		voterId:'xxx',
 		playerId:player.id,
-		voterName:returnCitySN["cip"]
+		voterName:name
 	}, function(data, body, info) {
 		$('.zhezhao2').show();
 		var player = JSON.parse(localStorage.currentPlayer);
@@ -680,7 +681,7 @@
 		var player = JSON.parse(localStorage.currentPlayer);
 		$('#vote_num').html(player.voteCount);
 		$('#scan_num').html(player.scanCount);
-		//$('#rank_num').html('1号 xxx');
+		$('#gift_num').html(player.giftCount);
 		$('#user_name').html(player.num + "号 " + player.username);
 		$('#user_info').html(player.description);
 	}, function() {
