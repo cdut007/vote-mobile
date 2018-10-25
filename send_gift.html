@@ -238,6 +238,30 @@
 		$('#scan_num').html(player.scanCount);
 		$('#gift_num').html(player.giftCount);
 		$('#user_name').html(player.num + "号 " + player.username);
+		
+		var activity = JSON.parse(localStorage.currentActivity);
+		get("/participant/list", {
+		activityId: activity.id,
+		limit: 100,
+		order: 'DESC',
+		sidx: 'voteCount'
+	}, function(data, body, info) {
+		var datalist = data.page.list;
+
+		if(datalist.length == 0) {
+			return;
+		}
+		for(var i = 0; i < datalist.length; i++) {
+			if(datalist[i].id == player.id) {
+				var rankNum = i + 1;
+				$('#rank_num').html(rankNum);
+				break;
+			}
+		}
+
+	}, function() {
+
+	});
 	
     	//判断iphoneX
 		function isIphoneX() {
