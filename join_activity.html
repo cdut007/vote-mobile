@@ -4,15 +4,19 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 
+<link rel="stylesheet" href="css/mui.min.css">
 
+			<link rel="stylesheet" type="text/css" href="css/phone.css">
 
-			<link rel="stylesheet" type="text/css" href="https://www.qmwtp.com/application/PC/views/ActivityNew/css/phone.css">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<link rel="stylesheet" type="text/css" href="css/webuploader.css">
+	<link rel="stylesheet" type="text/css" href="css/diyUpload.css">
+	
 
-	<link rel="stylesheet" type="text/css" href="https://www.qmwtp.com/application/PC/views/ActivityNew/css/style1.css">
-	<link rel="stylesheet" type="text/css" href="https://www.qmwtp.com/application/PC/views/ActivityNew/css/webuploader.css">
-	<link rel="stylesheet" type="text/css" href="https://www.qmwtp.com/application/PC/views/ActivityNew/css/diyUpload.css">
+<script src="js/mui.min.js"></script>
+<script type="text/javascript" src="js/common.js"></script>
 	<script src="https://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
-<title>我要报名-112</title>
+<title>我要报名</title>
 
 	<script>
 		(function (doc, win) {
@@ -194,6 +198,20 @@
 	.padding{
 		padding: 0 0;
 	}
+	
+	.delect {
+    position: absolute;
+    width: 100%;
+    height: 20px;
+    text-align: center;
+    line-height: 20px;
+    background-color: #000;
+    color: #fff;
+    transition: .5s;
+    cursor: pointer;
+    bottom: 0;
+    background-color: #ff4f4d;
+}
 		</style>
 
 </head>
@@ -224,11 +242,11 @@
 			<div id="box " class="clearfix" style="width: 98%; margin: 1% auto 0;">
 				<p class="lfy_1tishi">上传选手图片（1-3张）</p>
 				<div class="clearfix" style="width: 100%;">
-					<div class="player_pic clearfix">
+					<div id="fileList" class="player_pic clearfix uploader-list">
 
 					</div>
 					<div class="img_btn">
-						<img src="https://www.qmwtp.com/application/PC/views/ActivityNew/img/tianjia.png">
+						<img src="img/tianjia.png">
 						<div id="chooseImage">请选择选手图片</div>
 					</div>
 				</div>
@@ -255,7 +273,7 @@
 	<div class="lfy_1chenggong_alert"  >
 
 		<div class="sigun_yuan">
-			<img src="https://www.qmwtp.com/application/PC/views/ActivityNew/img/duihao_icon.png">
+			<img src="img/duihao_icon.png">
 		</div>
 
 
@@ -273,14 +291,10 @@
 			</div>
 
 	</div>
-	<a href="https://www.qmwtp.com/application/PC/views/ActivityNew/disclaimer.html"><div class="clearfix" style="font-size:12px;color:#fff;margin-top:3%;margin-bottom: 5%;"><img style="width:5%;margin:0.4% 2% 0 31%;float:left;" src="https://www.qmwtp.com/application/PC/views/ActivityNew/img/xuanze_icon2.png"><span style="margin-top: 2px;float: left;color: #758697;">同意《用户使用协议》</span>
+	<!--<a href="https://www.qmwtp.com/application/PC/views/ActivityNew/disclaimer.html"><div class="clearfix" style="font-size:12px;color:#fff;margin-top:3%;margin-bottom: 5%;"><img style="width:5%;margin:0.4% 2% 0 31%;float:left;" src="https://www.qmwtp.com/application/PC/views/ActivityNew/img/xuanze_icon2.png"><span style="margin-top: 2px;float: left;color: #758697;">同意《用户使用协议》</span>
 	</div>
-	</a>
-<!-- 	<div class="clearfix" style="width: 260px;margin:15px auto 20%;">
-			<div  style="color:#758697;font-size: 12px;line-height:30px;float: left;">全民微投票©技术支持</div>
-			<a href="https://www.qmwtp.com/ActivityNew/Project/new_page"><div class="sign_chuangjian">立即免费创建</div></a>
-		</div> -->
-<!-- 报名成功 -->
+	</a>-->
+
 
 <span style="display:none" id="shuoming">
 
@@ -288,73 +302,73 @@
 <script type="text/javascript">
     shuoming = document.getElementById('shuoming').innerHTML;
     //alert(shuoming);
-    wx.config({
-        debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
-        appId: 'wx027a7c149e9828f9', // 必填，公众号的唯一标识
-        timestamp: '1539700539', // 必填，生成签名的时间戳
-        nonceStr: 'kIK1z5VN1kVhFdRIYxm7TlXBs8IpnyGA', // 必填，生成签名的随机串
-        signature: '7fe0336d223ec580b86fcccf2ce64f1aaa278d0d',// 必填，签名，见附录1
-        jsApiList: [
-            'onMenuShareTimeline',
-            'onMenuShareAppMessage',
-            'onMenuShareQQ',
-            'onMenuShareWeibo',
-            'onMenuShareQZone',
-            'chooseImage',
-            'uploadImage',
-            'getLocalImgData'] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
-    });
-    wx.ready(function () {
-        wx.checkJsApi({
-            jsApiList: [
-                'onMenuShareTimeline',
-            ]
-        });
-        //分享到朋友圈
-        wx.onMenuShareTimeline({
-            title: '112-全民微投票',
-            link: 'https://signup.qmwtp.com/wtp/sg/512bcc2d/fs0ttmwg?openid=oaPnTvmSotWWasECT7u0zKNRvVOU&gzh=qmwhd',
-            imgUrl: 'https://www.qmwtp.com/',
-            /*trigger: function (res) {
-                alert('用户点击分享到朋友圈');
-            },*/
-            success: function (res) {
-                alert('已分享');
-            },
-            cancel: function (res) {
-                alert('已取消');
-            },
-            fail: function (res) {
-                alert('wx.onMenuShareTimeline:fail: '+JSON.stringify(res));
-            }
-        });
-        //分享给朋友
-        wx.onMenuShareAppMessage({
-            title: '112-全民微投票', // 分享标题
-            desc: shuoming, // 分享描述
-            link: 'https://signup.qmwtp.com/wtp/sg/512bcc2d/fs0ttmwg?openid=oaPnTvmSotWWasECT7u0zKNRvVOU&gzh=qmwhd', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
-            imgUrl: 'https://www.qmwtp.com/', // 分享图标
-            type: 'link', // 分享类型,music、video或link，不填默认为link
-            dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
-            success: function () {
-                // 用户确认分享后执行的回调函数
-            },
-            cancel: function () {
-                // 用户取消分享后执行的回调函数
-            }
-        });
-    });
-    wx.error(function (res) {
-        alert('wx.error: '+JSON.stringify(res));
-    });
+//  wx.config({
+//      debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+//      appId: 'wx027a7c149e9828f9', // 必填，公众号的唯一标识
+//      timestamp: '1539700539', // 必填，生成签名的时间戳
+//      nonceStr: 'kIK1z5VN1kVhFdRIYxm7TlXBs8IpnyGA', // 必填，生成签名的随机串
+//      signature: '7fe0336d223ec580b86fcccf2ce64f1aaa278d0d',// 必填，签名，见附录1
+//      jsApiList: [
+//          'onMenuShareTimeline',
+//          'onMenuShareAppMessage',
+//          'onMenuShareQQ',
+//          'onMenuShareWeibo',
+//          'onMenuShareQZone',
+//          'chooseImage',
+//          'uploadImage',
+//          'getLocalImgData'] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+//  });
+//  wx.ready(function () {
+//      wx.checkJsApi({
+//          jsApiList: [
+//              'onMenuShareTimeline',
+//          ]
+//      });
+//      //分享到朋友圈
+//      wx.onMenuShareTimeline({
+//          title: '112-全民微投票',
+//          link: 'https://signup.qmwtp.com/wtp/sg/512bcc2d/fs0ttmwg?openid=oaPnTvmSotWWasECT7u0zKNRvVOU&gzh=qmwhd',
+//          imgUrl: 'https://www.qmwtp.com/',
+//          /*trigger: function (res) {
+//              alert('用户点击分享到朋友圈');
+//          },*/
+//          success: function (res) {
+//              alert('已分享');
+//          },
+//          cancel: function (res) {
+//              alert('已取消');
+//          },
+//          fail: function (res) {
+//              alert('wx.onMenuShareTimeline:fail: '+JSON.stringify(res));
+//          }
+//      });
+//      //分享给朋友
+//      wx.onMenuShareAppMessage({
+//          title: '112-全民微投票', // 分享标题
+//          desc: shuoming, // 分享描述
+//          link: 'https://signup.qmwtp.com/wtp/sg/512bcc2d/fs0ttmwg?openid=oaPnTvmSotWWasECT7u0zKNRvVOU&gzh=qmwhd', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+//          imgUrl: 'https://www.qmwtp.com/', // 分享图标
+//          type: 'link', // 分享类型,music、video或link，不填默认为link
+//          dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
+//          success: function () {
+//              // 用户确认分享后执行的回调函数
+//          },
+//          cancel: function () {
+//              // 用户取消分享后执行的回调函数
+//          }
+//      });
+//  });
+//  wx.error(function (res) {
+//      alert('wx.error: '+JSON.stringify(res));
+//  });
 </script>
 
 
 
 	<!-- 上传图片开始 -->
-	<script src="//lib.baomitu.com/jquery/3.2.1/jquery.js"></script>
-	<script src="https://www.qmwtp.com/application/PC/views/ActivityNew/js/webuploader.html5only.min.js"></script>
-	<script src="https://www.qmwtp.com/application/PC/views/ActivityNew/js/diyUpload.js"></script>
+	<script src="js/jquery-3.2.1.min.js"></script>
+	<script src="js/webuploader.html5only.min.js"></script>
+	<script src="js/diyUpload.js"></script>
 	<script type="text/javascript">
 
 /*
@@ -362,127 +376,113 @@
 * 其他参数同WebUploader
 */
 
-$('#test').diyUpload({
-	url:'https://signup.qmwtp.com/ActivityNew/Project/sign_up_upload_pic?pid=307772',
-	success:function( data ) {
-		var img_num = $('.fileBoxUl').find('li').length;
-			if(img_num==1)
-			{
-				var li_id = $('#fileBox_WU_FILE_0');
-			}else if(img_num==2){
-				var li_id = $('#fileBox_WU_FILE_1');
-			}else if(img_num==3){
-				var li_id = $('#fileBox_WU_FILE_2')
-			}
-		li_id.append("<input type='hidden' name='pics[]' value='"+data.x_pic+"'/>"+
-				"<input type='hidden' name='slpics[]' value='"+data.x_sl_pic+"'><input type='hidden' name='head_pic[]' value='"+data.head_pic+"'><input type='hidden' name='cache_pics[]' value='"+data.cache_pic_url+"'><input type='hidden' name='cache_slpics[]' value='"+data.sl_pic_url+"'><input type='hidden' name='cache_head_pic[]' value='"+data.head_pic_url+"'>");
-		//console.info( data );
-	},
-	error:function( err ) {
-		console.info( err );
-	}
-
-});
-var asdsa = 1;
-$('#test').click(function(){
-	if ($('li').length<3) {
-		asdsa = 1;
-	}
-	if (asdsa == 2) {
-		return false;
-	}
-console.log($('li').length)
-	if ($('li').length==3) {
-		asdsa = 2;
-		$(".lfy_1tishichuang").stop(true).fadeIn(500).delay(1000).fadeOut(500);
-				$(".lfy_1tishichuang").html('最多上传三张图');
-		return false;
-	}
-
-})
-
 
 </script>
 <script type="text/javascript">
+	
+	/**
+ * webuploader图片上传
+ */
+$(function() {
+  console.log('webuploader图片上传。。。');
+
+  var webuploaderutil = {};
+  // Web Uploader实例
+  var uploader;
+
+  var $list = $('#fileList'),
+  // 优化retina, 在retina下这个值是2
+  ratio = window.devicePixelRatio || 1,
+  thumbnailWidth = 100 * ratio, thumbnailHeight = 100 * ratio,
+
+  // 初始化Web Uploader
+  uploader = WebUploader.create({
+    // 自动上传。
+    auto : false,
+    // 文件接收服务端。
+    fileNumLimit:3,
+    server : '/sys/file/uploadImage.do',
+    // 选择文件的按钮。可选。
+    // 内部根据当前运行是创建，可能是input元素，也可能是flash.
+    pick : '#chooseImage',
+    // 只允许选择文件，可选。
+    accept : {
+      title : 'Images',
+      extensions : 'gif,jpg,jpeg,bmp,png',
+      mimeTypes : 'image/*'
+    }
+  });
+
+  // 当有文件添加进来的时候
+  uploader.on('fileQueued', function(file) {
+    
+    // 创建缩略图
+    uploader.makeThumb(file, function(error, src) {
+      if (error) {
+        
+        console.log('image has error');
+        return;
+      }
+      var deleteBtn = '<p class="delect" onclick="del(this);">删除</p>';;
+   $('.player_pic').append("<div class='img_hezi'><img class='pic' src='"+src+"' >"+deleteBtn+"</div>");
+
+     
+    }, thumbnailWidth, thumbnailHeight);
+
+  });
+
+  // 文件上传过程中创建进度条实时显示。
+  uploader.on('uploadProgress', function(file, percentage) {
+    var $li = $( '#'+file.id ),
+    $percent = $li.find('.progress span');
+
+    // 避免重复创建
+    if ( !$percent.length ) {
+        $percent = $('<p class="progress"><span></span></p>')
+                .appendTo( $li )
+                .find('span');
+    }
+
+    $percent.css( 'width', percentage * 100 + '%' );
+  });
+
+  // 文件上传成功，给item添加成功class, 用样式标记上传成功。
+  uploader.on('uploadSuccess', function(file, response) {
+    $('#' + file.id).addClass('upload-state-done');
+
+    //重新初始化
+//    webuploaderutil.uploadPicByResp(uploadDiv, imgEle, success, error);
+    console.log('response:', response);
+  });
+
+  // 文件上传失败，现实上传出错。
+  uploader.on('uploadError', function(file) {
+    var $li = $('#' + file.id), $error = $li.find('div.error');
+
+    // 避免重复创建
+    if (!$error.length) {
+      $error = $('<div class="error"></div>').appendTo($li);
+    }
+
+    $error.text('上传失败');
+  });
+
+  // 完成上传完了，成功或者失败，先删除进度条。
+  uploader.on('uploadComplete', function(file) {
+    $('#' + file.id).find('.progress').remove();
+    
+  });
+});
+	
 	//图像接口
 	// 5 图片接口
-	// 5.1 拍照、本地选图
-
-
-	document.querySelector('#chooseImage').onclick = function () {
-		wx.chooseImage({
-			count: 1,
-			success: function (res) {
-				console.log(res);
-				localIds = res.localIds;
-				var pic = $(".pic").length;
-				var select_pic = res.localIds.length;
-				var all_pic = pic+select_pic;
-				if(all_pic<4)
-				{
-					for(var i = 0;i<select_pic;i++)
-					{
-						if(all_pic==3)
-						{
-							$(".img_btn").remove();
-						}
-						localId = localIds.toString();
-						wx.uploadImage({
-							localId: localId, // 需要上传的图片的本地ID，由chooseImage接口获得
-							isShowProgressTips: 1, // 默认为1，显示进度提示
-
-							success: function (res) {
-								serverId = res.serverId; // 返回图片的服务器端ID 4HY4_D5p8ZcBIeVPKUIkvWBd7OlNr_f2TVPAs32xnb5oZQDugO1qPYoz-7Jpc095
-								//当成功从微信服务端返回 serverid 上传到php自己服务器上
-								$.ajax({
-									url:'https://signup.qmwtp.com/ActivityNew/Project/sign_up_upload_pic?pid=307772',
-									type:'post',
-									data:{
-										media_id:serverId,
-										gzh:'qmwhd'
-									},
-									dataType:'json',
-									success:function(data){
-										if (data.code == 400) {
-											alert(data.message);
-										} else {
-											$('.player_pic').append("<div class='img_hezi'><img class='pic' src='"+data['sl_pic']+"' ></div>" +
-													"<input  type='hidden' name='pics[]' value='"+data.x_pic+"'/>" +
-													"<input  type='hidden' name='slpics[]' value='"+data.x_sl_pic+"'>" +
-													"<input  type='hidden' name='head_pic[]' value='"+data.head_pic+"'>" +
-													"<input  type='hidden' name='cache_pics[]' value='"+data.cache_pic_url+"'>" +
-													"<input  type='hidden' name='cache_slpics[]' value='"+data.cache_sl_pic_url+"'>" +
-													"<input  type='hidden' name='cache_head_pic[]' value='"+data.cache_head_pic_url+"'>");
-											//$($var_input).val(data.realimgurl); //图片显示在前端<img>
-
-										}
-									},
-									error: function(request) {
-										alert("Connection error");//make-in-lemon 正式发行可选择屏蔽
-									},
-								});
-
-							},
-							fail:function(res){
-								alert(res.errMsg);
-								// alert(JSON.stringify(res))
-							}
-						});
-					}
-				}else{
-					alert('最多上传三张图片！');
-				}
-			}
-		});
-	};
-
 
 
 	function del(obj){
 		var pics = $(obj).attr('pics');
 		var slpics = $(obj).attr('slpics');
 		var head_pics = $(obj).attr('head_pics');
-
+        $(obj).parent().remove();
 		$.ajax({
 			url:'https://signup.qmwtp.com/ActivityNew/Project/sign_up_del_pic',
 			type:'post',
@@ -491,23 +491,14 @@ console.log($('li').length)
 			success:function()
 			{
 
-				$(obj).parent().remove();
+				//$(obj).parent().remove();
 			}
 		})
 	}
 </script>
 	<!-- 上传图片开始结束 -->
 	<script type="text/javascript">
-		$('#ax1').click(function(){
-			$('#radio_img1').attr('src',"https://www.qmwtp.com/application/PC/views/ActivityNew/img/raido.png")
-			$('#radio_img2').attr('src',"https://www.qmwtp.com/application/PC/views/ActivityNew/img/radio1.png")
-		})
-
-		$('#ax2').click(function(){
-
-			$('#radio_img1').attr('src',"https://www.qmwtp.com/application/PC/views/ActivityNew/img/radio1.png")
-			$('#radio_img2').attr('src',"https://www.qmwtp.com/application/PC/views/ActivityNew/img/raido.png")
-		})
+		
 		$('.lfy_1shuru_left ').each(function(i,j){
 
 			if ($(this).height()>20) {
@@ -580,23 +571,23 @@ console.log($('li').length)
 					type:'post',
 					dataType:'json',
 					success:function(data){
+						$(".lfy_1foot_btn").attr('value','true');
 						if(data['code']==200)
 						{
 
-							$(".lfy_1foot_btn").attr('value','true');
+							
 							// 弹窗显示
 							$('.lfy_1zhezhao').show();
 							$('.lfy_1chenggong_alert').show();
 						}else{
 
-							$(".lfy_1foot_btn").attr('value','false');
 							$('.lfy_1gongxi1').html(data['info']);
 							$('.lfy_1zhezhao').show();
 							$('.lfy_1chenggong_alert').show();
 						}
 					},
 					error: function(XMLHttpRequest, textStatus, errorThrown) {
-						$(".lfy_1foot_btn").attr('value','false');
+						$(".lfy_1foot_btn").attr('value','true');
 						console.log(XMLHttpRequest.status);
 						console.log(XMLHttpRequest.readyState);
 						console.log(textStatus);
@@ -609,19 +600,12 @@ console.log($('li').length)
 		$('.lfy_1blue').click(function(){
 				$('.lfy_1chenggong_alert').hide();
 				$('.lfy_1zhezhao').hide();
-				//window.location.href="http://cepgfhca.wxvote.99whd.com/ActivityNew/Project/project?pid=307772";
-				window.location.href="https://mood.sheng100.top/hudong/fs0ttmwg";
+				 window.location.href="main.html?key="+localStorage.shortUrl
 		})
-		$(".lfy_1yellow_txt").click(function(){
-			window.location.href="https://www.qmwtp.com/ActivityNew/Project/project?pid=307772";
-		})
+		
 	</script>
-	<div id="cnzz" style="display: none"></div>
-		<script type="text/javascript">
-			$(function(){
-				$('#cnzz').html('<script src="https://s19.cnzz.com/z_stat.php?id=3782871&web_id=3782871" language="JavaScript"><\/script>')
-			})
-		</script>
+
+
 	<script>
         function onBridgeReady() {
             WeixinJSBridge.call('hideOptionMenu');
