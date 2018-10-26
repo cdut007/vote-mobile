@@ -564,35 +564,27 @@ $(function() {
 				$("input[name^='cache_head_pic']").each(function(e,el){cache_head_pic[e]=$(el).val();})
 
 				var pid = $("#pid").val();
-				var openid = 'oaPnTvmSotWWasECT7u0zKNRvVOU';
-				$.ajax({
-					url:"https://signup.qmwtp.com/ActivityNew/Project/sign_up_submit",
-					data:{player_name:name,player_tel:tel,remarks:txt,pics:pics,slpics:slpics,headpic:headpic,cache_pics:cache_pics,cache_slpics:cache_slpics,cache_head_pic:cache_head_pic,pid:pid,player_group:player_group,openid:openid                },
-					type:'post',
-					dataType:'json',
-					success:function(data){
-						$(".lfy_1foot_btn").attr('value','true');
-						if(data['code']==200)
-						{
-
-							
-							// 弹窗显示
+				var activity = JSON.parse(localStorage.currentActivity);
+					post("/participant/save", {
+					activityId: activity.id,
+					username: name,
+                    mobile: tel,
+                    description: txt,
+                    pics:pics
+				}, function(data, body, info) {
+					 $(".lfy_1foot_btn").attr('value','true');
+					 $('.lfy_1zhezhao').show();
+					 $('.lfy_1chenggong_alert').show();
+				}, function(msg) {
+			      $(".lfy_1foot_btn").attr('value','true');
+					  $('.lfy_1gongxi1').html(msg);
+					    $('.lfy_1gongxi2').html('报名失败！！！');
+					  
 							$('.lfy_1zhezhao').show();
 							$('.lfy_1chenggong_alert').show();
-						}else{
-
-							$('.lfy_1gongxi1').html(data['info']);
-							$('.lfy_1zhezhao').show();
-							$('.lfy_1chenggong_alert').show();
-						}
-					},
-					error: function(XMLHttpRequest, textStatus, errorThrown) {
-						$(".lfy_1foot_btn").attr('value','true');
-						console.log(XMLHttpRequest.status);
-						console.log(XMLHttpRequest.readyState);
-						console.log(textStatus);
-					}
-				})
+				});
+				
+				
 			}
 
 		})
